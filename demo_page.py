@@ -28,12 +28,13 @@ class DemoPage(Page):
     _footer_login_locator = 'css=#site-info >.wrap >.user-state>a:nth-child(1)'
     _footer_signup_locator ='css=#site-info > .wrap > .user-state>a:nth-child(2)'
     _technology_locator ="css=.cols-2 > li > a"
+    _demo_locator = "ul>li.demo>.demo-title>a>img"
 
     def __init__(self,selenium):
         self.selenium = selenium
    
     @property
-    def get_technology(self):
+    def get_tags(self):
         technology_text =[]
         technology_visible =[]
         count = self.selenium.get_css_count(self._technology_locator)
@@ -42,14 +43,42 @@ class DemoPage(Page):
             technology_text.append(self.selenium.get_text(locator))
             technology_visible.append(self.selenium.is_visible(locator))
         return dict(zip(technology_text, technology_visible))
-    
+        
+    @property
+    def get_tag_links(self):
+        tag_links_text = []
+        tag_links = []
+        count = self.selenium.get_css_count(self._technology_locator) 
+        for i in range(1,count):
+            locator = "css=.cols-2>li:nth-child(%d)>a" % i
+            tag_links_text.append(self.selenium.get_text(locator))
+            self.click(locator,True)
+            tag_links.append(self.selenium.get_location())
+        return dict(zip(tag_links_text, tag_links))
+        
+    def iterate_demos(self):
+        demo_text = []
+        is_demo_present = []
+        count = self.selenium.get_css_count(self._demo_locator)
+        for i in range (1,count):
+            locator = "ul>li.demo:nth-child(%d)>.demo-title>a>mg" % i
+            print self.selenium.get_text(locator)
+            demo_text.append(self.selenium.get_text(locator))
+            is_demo_present.append(self.selenium.is_element_present(locator))
+        return dict(zip(demo_text,is_demo_present))
+
 
     @property
-    def go_to_page(self):
-        self.selenium.open('demos/')
+    def go_to_page(self,url="demos/"):
+        self.selenium.open(url)
         self.selenium.window_maximize()
         print self.selenium.get_location()
         #self.selenium.wait_for_page_to_load(page_load_timeout)
+        
+    def open(self,url="demos/"):
+        self.selenium.open(url)
+        self.selenium.wait_for_page_to_load(page_load_timeout)
+        self.iterate_demos()
 
     @property
     def get_header_image(self):

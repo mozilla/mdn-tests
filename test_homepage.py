@@ -40,10 +40,9 @@ class TestHomepage(unittest.TestCase):
     def test_technology_links(self):
         demo_pg = DemoPage(self.selenium)
         demo_pg.go_to_page
-        links = demo_pg.get_technology
+        links = demo_pg.get_tags
         for keys, values in sorted(links.items()):
-            print keys
-            self.assertTrue(values)
+            self.assertTrue(links[keys])
             
 
 if __name__ == "__main__":
