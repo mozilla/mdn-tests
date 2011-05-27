@@ -2,36 +2,45 @@ from selenium import selenium
 import vars
 from page import Page
 
-page_load_timeout = vars.ConnectionParameters.page_load_timeout
-
-
 class DemoPage(Page):
 
     _header_image_locator = 'css=#logo > a img'
-    _login_locator = 'css=#utility > p.user-state > a:nth-child(1)'
-    _signup_locator = 'css=#utility >p.user-state > a:nth-child(2)'
-    _featured_demos_header_locator = 'css=#featured-demos>header > h2'
+    _login_locator = \
+    'css=#utility > p.user-state > a:nth-child(1)'
+    _signup_locator = \
+    'css=#utility >p.user-state > a:nth-child(2)'
+    _featured_demos_header_locator = \
+    'css=#featured-demos>header > h2'
     _search_mdn_locator = "css=#q"
     _search_locator = 'css=input#search-demos'
     _search_heading_locator = "css=.page-title"
-    _most_viewed_locator = 'css=#gallery-sort >.sort > li:nth-child(1) > a'
-    _most_liked_locator = 'css=#gallery-sort >.sort > li:nth-child(2) > a'
-    _most_recent_locator = 'css=#gallery-sort >.sort > li:nth-child(3) >a'
-    _submit__demo_locator = 'css=#page-head.landing > p .aide demo-submit'
-    _feedback_locator = "css=#footbar > div.wrap> p >a"
+    _most_viewed_locator = \
+    'css=#gallery-sort >.sort > li:nth-child(1) > a'
+    _most_liked_locator = \
+    'css=#gallery-sort >.sort > li:nth-child(2) > a'
+    _most_recent_locator = \
+    'css=#gallery-sort >.sort > li:nth-child(3) >a'
+    _submit__demo_locator = \
+    'css=#page-head.landing > p .aide demo-submit'
+    _feedback_locator = \
+    'css=#footbar > div.wrap> p >a'
     _footer_image_locator = 'css=#legal > img'
-    _footer_copyright_text_locator = 'css=#legal > p#copyright'
-    _footer_license_locator = 'css=#legal > p >a:nth-child(1)'
-    _footer_about_locator = 'css=#legal >p > a:nth-child(2)'
-    _footer_privacy_policy_locator = 'css=#legal > p > a:nth-child(3)'
+    _footer_copyright_text_locator = \
+    'css=#legal > p#copyright'
+    _footer_license_locator = \
+    'css=#legal > p >a:nth-child(1)'
+    _footer_about_locator = \
+    'css=#legal >p > a:nth-child(2)'
+    _footer_privacy_policy_locator = \
+    'css=#legal > p > a:nth-child(3)'
     _footer_language_locator = 'css=select#language'
-    _footer_login_locator = 'css=#site-info >.wrap >.user-state>a:nth-child(1)'
-    _footer_signup_locator ='css=#site-info > .wrap > .user-state>a:nth-child(2)'
-    _technology_locator ="css=.cols-2 > li > a"
-    _demo_locator = "ul>li.demo>.demo-title>a>img"
+    _footer_login_locator = \
+    'css=#site-info >.wrap >.user-state>a:nth-child(1)'
+    _footer_signup_locator = \
+    'css=#site-info > .wrap > .user-state>a:nth-child(2)'
+    _technology_locator = 'css=.cols-2 > li > a'
+    _demo_locator = 'ul>li.demo>.demo-title>a>img'
 
-    def __init__(self,selenium):
-        self.selenium = selenium
    
     @property
     def get_tags(self):
@@ -70,15 +79,8 @@ class DemoPage(Page):
 
     @property
     def go_to_page(self,url="demos/"):
-        self.selenium.open(url)
-        self.selenium.window_maximize()
-        print self.selenium.get_location()
-        #self.selenium.wait_for_page_to_load(page_load_timeout)
-        
-    def open(self,url="demos/"):
-        self.selenium.open(url)
-        self.selenium.wait_for_page_to_load(page_load_timeout)
-        self.iterate_demos()
+        self.open(url)
+        print self.get_url_current_page()
 
     @property
     def get_header_image(self):
