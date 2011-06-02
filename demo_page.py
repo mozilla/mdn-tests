@@ -1,5 +1,4 @@
 from selenium import selenium
-import vars
 from page import Page
 
 class DemoPage(Page):
