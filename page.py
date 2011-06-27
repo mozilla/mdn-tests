@@ -75,6 +75,9 @@ class Page(object):
         
     def get_text(self,locator):
         return self.selenium.get_text(locator)
+        
+    def get_css_count(self,locator):
+        return self.selenium.get_css_count(locator)
 
     def click_link(self, link, wait_flag=False):
         self.selenium.click("link=%s" %(link))
