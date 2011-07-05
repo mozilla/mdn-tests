@@ -7,7 +7,7 @@ class DemoPage(Page):
     _docs_link_locator = "css=.docs"
     _demos_link_locator = "css=.demos"
     _learning_link_locator = "css=.learning"
-    _forums_link_locator = "css=.forums"
+    _forums_link_locator = "css=.community"
     _join_mdn_locator = "css=.wrap>p:nth-child(1)>a"
     _login_locator = "css=.wrap>p:nth-child(2)>a"
     _search_mdn_locator ="css=#q"
