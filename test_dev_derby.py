@@ -2,6 +2,7 @@ from selenium import selenium
 from unittestzero import Assert
 from demo_page import DemoPage
 from derby_page import DerbyPage
+import pytest
 xfail = pytest.mark.xfail
 
 
