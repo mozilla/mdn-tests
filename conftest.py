@@ -45,5 +45,6 @@ def pytest_addoption(parser):
 
 
 class TestSetup:
+
     def __init__(self, request):
         self.request = request
