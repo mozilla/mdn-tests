@@ -17,6 +17,11 @@ class DerbyPage(Page):
     _docs_link_locator = "css=.res-docs>a"
     _demos_link_locator = "css=.res-demos>a"
     _articles_link_locaator = "css=.res-articles>a"
+    _prizes_locator = "css=.challenge-prizes>h1"
+    
+    @property
+    def get_prizes_text(self):
+        return self.get_text(self._prizes_locator)
     
     @property
     def is_home_link_visible(self):
