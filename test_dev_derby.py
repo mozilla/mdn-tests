@@ -36,3 +36,4 @@ class TestDevDerbyPage:
         Assert.true(derby_pg.is_previous_winner_demo_button_visible)
         Assert.true(derby_pg.is_docs_link_visible)
         Assert.true(derby_pg.is_articles_link_visible)
+        Assert.equal(derby_pg.get_prizes_text, "Prizes")
