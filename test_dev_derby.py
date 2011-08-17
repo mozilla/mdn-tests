@@ -10,7 +10,7 @@ class TestDevDerbyPage:
 
     def test_are_footer_links_visible(self, testsetup):
         derby_pg = DemoPage(testsetup)
-        derby_pg.go_to_derby_page()
+        derby_pg.open("en-US/demos/devderby")
         Assert.true(derby_pg.is_footer_img_visible)
         Assert.true(derby_pg.is_footer_bar_feedback_link_visible)
         Assert.true(derby_pg.is_footer_licenses_link_visible)
