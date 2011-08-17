@@ -28,36 +28,39 @@ class DerbyPage(Page):
     def get_number_of_judges(self):
         return self.get_css_count(self._judge_locator)
 
+    def go_to_derby_page(self):
+        self.open("en-US/demos/devderby")
+
     def is_judge_photo_visible(self, count):
         self.click(self._judging_link_locator)
         judge_photo_locator = "css=.judges>.vcard:nth-child(%d)>h3>a>img" % count
         return self.is_element_visible(judge_photo_locator)
-   
+
     def are_previous_challenges_visible(self, count):
         self.click(self._previous_link_locator)
         previous_challenge_locator = 'css=ul.previous>li:nth-child(%d)' % count
         return self.is_element_visible(previous_challenge_locator)
-    
+
     @property
     def get_number_of_previous_challenges(self):
         return self.get_css_count(self._previous_challenges_locator)
-    
+
     @property
     def is_prizes_image_visible(self):
         return self.is_element_visible(self._prizes_image_locator)
-    
+
     @property
     def get_prizes_text(self):
         return self.get_text(self._prizes_locator)
-    
+
     @property
     def is_home_link_visible(self):
         return self.is_element_visible(self._home_link_locator)
-    
+
     @property
     def is_challenges_link_visible(self):
         return self.is_element_visible(self._challenges_link_locator)
-    
+
     @property
     def is_rules_link_visible(self):
         return self.is_element_visible(self._rules_link_locator)

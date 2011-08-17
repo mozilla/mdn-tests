@@ -10,7 +10,7 @@ class TestDevDerbyPage:
 
     def test_are_footer_links_visible(self, testsetup):
         derby_pg = DemoPage(testsetup)
-        derby_pg.open("en-US/demos/devderby")
+        derby_pg.go_to_derby_page()
         Assert.true(derby_pg.is_footer_img_visible)
         Assert.true(derby_pg.is_footer_bar_feedback_link_visible)
         Assert.true(derby_pg.is_footer_licenses_link_visible)
@@ -21,7 +21,7 @@ class TestDevDerbyPage:
    ## @xfail(reason="No derby winners on production yet")
     def test_derby_links_visible(self, testsetup):
         derby_pg = DerbyPage(testsetup)
-        derby_pg.open("en-US/demos/devderby")
+        derby_pg.go_to_derby_page()
         Assert.true(derby_pg.is_home_link_visible)
         Assert.true(derby_pg.is_challenges_link_visible)
         Assert.true(derby_pg.is_rules_link_visible)
@@ -41,14 +41,14 @@ class TestDevDerbyPage:
 
     def test_judge_images_visible(self, testsetup):
         derby_pg = DerbyPage(testsetup)
-        derby_pg.open('en-US/demos/devderby')
+        derby_pg.go_to_derby_page()
         number_of_judges = derby_pg.get_number_of_judges
         for i in range(1, number_of_judges):
             Assert.true(derby_pg.is_judge_photo_visible(i))
 
     def test_are_previous_challenges_present(self, testsetup):
         derby_pg = DerbyPage(testsetup)
-        derby_pg.open('en-US/demos/devderby')
+        derby_pg.go_to_derby_page()
         number_of_challenges = derby_pg.get_number_of_previous_challenges
         for i in range(1, number_of_challenges):
             Assert.true(derby_pg.are_previous_challenges_visible(i))

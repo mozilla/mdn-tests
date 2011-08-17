@@ -34,6 +34,9 @@ class DemoPage(Page):
     _footer_privacy_link_locator = "css=#legal>p>a:nth-child(3)"
     _footer_help_link_locator = "css=#legal>p>a:nth-child(4)"
 
+    def go_to_demo_page(self):
+        self.open("/demos")
+
     @property
     def is_topics_link_visible(self):
         return self.is_element_visible(self._topics_link_locator)

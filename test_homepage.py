@@ -7,7 +7,7 @@ class TestHomepage:
 
     def test_header_links(self, testsetup):
         demo_pg = DemoPage(testsetup)
-        demo_pg.open("/demos")
+        demo_pg.go_to_demo_page()
         Assert.true(demo_pg.is_topics_link_visible)
         Assert.true(demo_pg.is_docs_link_visible)
         Assert.true(demo_pg.is_demos_link_visible)
@@ -27,7 +27,7 @@ class TestHomepage:
 
     def test_footer_links(self, testsetup):
         demo_pg = DemoPage(testsetup)
-        demo_pg.open("/demos")
+        demo_pg.go_to_demo_page()
         Assert.true(demo_pg.is_footer_img_visible)
         Assert.true(demo_pg.is_footer_rss_link_visible)
         Assert.true(demo_pg.is_footer_bar_feedback_link_visible)
