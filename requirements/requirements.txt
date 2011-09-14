@@ -5,3 +5,4 @@ selenium
 pytest
 pytest-xdist
 unittestzero
+pytest-mozwebqa
