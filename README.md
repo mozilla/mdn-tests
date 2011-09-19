@@ -35,7 +35,7 @@ Once this is all set up you will need to download and start a Selenium server. Y
 
 To start the Selenium server run the following command:
 
-    java -jar ~/Downloads/selenium-server-standalone-2.0b6.jar
+    java -jar ~/Downloads/selenium-server-standalone-x.x.jar (where x.x is current shipping version)
 
 Change the path/name to the downloaded Selenium server file.
 
