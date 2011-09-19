@@ -18,7 +18,7 @@ class TestDevDerbyPage:
         Assert.true(derby_pg.is_footer_privacy_link_visible)
         Assert.true(derby_pg.is_footer_help_link_visible)
 
-   @xfail(reason="No derby winners on production yet")
+    @xfail(reason="No derby winners on production yet")
     def test_derby_links_visible(self, mozwebqa):
         derby_pg = DerbyPage(mozwebqa)
         derby_pg.go_to_derby_page()
