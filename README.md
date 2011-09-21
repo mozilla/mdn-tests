@@ -46,7 +46,7 @@ Change the path/name to the downloaded Selenium server file.
 Once the above prerequisites have been met you can run the tests using the
 following command:
 
-    py.test  --api=rc --browser='*firefox' --baseurl=http://developer-stage9.mozilla.org --timeout="120000"
+    py.test --api=rc --browser=*firefox --baseurl=http://developer-stage9.mozilla.org --timeout=120000
 
 Writing Tests
 -------------

@@ -17,7 +17,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla Corp.
-# Portions created by the Initial Developer are Copyright (C) 2011
+# Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -39,7 +39,7 @@ from selenium import selenium
 from page import Page
 
 
-class DemoPage(Page):  
+class DemoPage(Page):
     _count = 1
     _topics_link_locator = "css=.toggle"
     _docs_link_locator = "css=.docs"
@@ -48,7 +48,7 @@ class DemoPage(Page):
     _forums_link_locator = "css=.community"
     _join_mdn_locator = "css=.wrap>p:nth-child(1)>a"
     _login_locator = "css=.wrap>p:nth-child(2)>a"
-    _search_mdn_locator ="css=#q"
+    _search_mdn_locator = "css=#q"
     _demo_studio_locator = "css=#demos-head>h1"
     _learn_more_locator = "css=.learnmore>a"
     _submit_demo_locator = "css=.demo-buttons>li.submit"
@@ -62,12 +62,12 @@ class DemoPage(Page):
     _most_liked_sort_locator = "css=.sort>li:nth-child(3)>a"
     _most_recent_sort_locator = "css=.sort>li:nth-child(1)>a"
     _demo_image_count_locator = "css=.demo>.demo-title>a>img"
-    _demo_title_count_locator ="css=.demo>.demo-title>a"
+    _demo_title_count_locator = "css=.demo>.demo-title>a"
     _footer_img_locator = "css=#legal>img"
     _footer_rss_link_locator = "css=.feed>a"
     _footer_bar_feedback_link_locator = "css=#footbar>div.wrap>p>a"
     _footer_licenses_link_locator = "css=#legal>p>a:nth-child(1)"
-    _footer_about_link_locator= "css=#legal>p>a:nth-child(2)"
+    _footer_about_link_locator = "css=#legal>p>a:nth-child(2)"
     _footer_privacy_link_locator = "css=#legal>p>a:nth-child(3)"
     _footer_help_link_locator = "css=#legal>p>a:nth-child(4)"
 

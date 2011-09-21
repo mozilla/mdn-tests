@@ -17,7 +17,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla Corp.
-# Portions created by the Initial Developer are Copyright (C) 2011
+# Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -68,30 +68,30 @@ class Page(object):
                 raise Exception('Expected page title does not match actual page title.')
         else:
             return True
-                  
+
     def open(self, url):
         self.selenium.open(url)
         self.selenium.wait_for_page_to_load(self.timeout)
-        
+
     def get_text(self, locator):
         return self.selenium.get_text(locator)
-        
+
     def get_css_count(self, locator):
         return self.selenium.get_css_count(locator)
-    
+
     def click_link(self, link, wait_flag=False):
-        self.selenium.click("link=%s" %(link))
+        self.selenium.click("link=%s" % (link))
         if(wait_flag):
             self.selenium.wait_for_page_to_load(self.timeout)
-    
+
     def click(self, locator, wait_flag=False):
         self.selenium.click(locator)
         if(wait_flag):
             self.selenium.wait_for_page_to_load(self.timeout)
-            
+
     def type(self, locator, str):
         self.selenium.type(locator, str)
-        
+
     def click_button(self, button, wait_flag=False):
         self.selenium.click(button)
         if(wait_flag):
@@ -105,7 +105,7 @@ class Page(object):
 
     def is_element_visible(self, locator):
         return self.selenium.is_visible(locator) and self.selenium.is_element_present(locator)
-        
+
     def is_text_present(self, text):
         return self.selenium.is_text_present(text)
 
@@ -118,7 +118,7 @@ class Page(object):
         while not self.is_element_present(element):
             time.sleep(1)
             count += 1
-            if count == self.timeout/1000:
+            if count == self.timeout / 1000:
                 self.record_error()
                 raise Exception(element + ' has not loaded')
 
@@ -128,7 +128,7 @@ class Page(object):
         while not self.is_element_visible(element):
             time.sleep(1)
             count += 1
-            if count == self.timeout/1000:
+            if count == self.timeout / 1000:
                 self.record_error()
                 raise Exception(element + " is not visible")
 
@@ -137,7 +137,7 @@ class Page(object):
         while self.is_element_visible(element):
             time.sleep(1)
             count += 1
-            if count == self.timeout/1000:
+            if count == self.timeout / 1000:
                 self.record_error()
                 raise Exception(element + " is still visible")
 
@@ -146,7 +146,7 @@ class Page(object):
         while (re.search(url_regex, self.selenium.get_location(), re.IGNORECASE)) is None:
             time.sleep(1)
             count += 1
-            if count == self.timeout/1000:
+            if count == self.timeout / 1000:
                 self.record_error()
                 raise Exception("Sites Page has not loaded")
 

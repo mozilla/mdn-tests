@@ -17,7 +17,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla Corp.
-# Portions created by the Initial Developer are Copyright (C) 2011
+# Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -77,12 +77,12 @@ class TestHomepage:
         demo_pg = DemoPage(mozwebqa)
         demo_pg.open("/demos")
         totalDemoTitles = demo_pg.get_demo_title_count()
-        for i in range(1, totalDemoTitles+1):
+        for i in range(1, totalDemoTitles + 1):
             Assert.true(demo_pg.is_demo_title_visible(i))
 
     def test_demo_image(self, mozwebqa):
         demo_pg = DemoPage(mozwebqa)
         demo_pg.open("/demos")
         totalDemoImages = demo_pg.get_demo_image_count()
-        for i in range(1, totalDemoImages+1):
+        for i in range(1, totalDemoImages + 1):
             Assert.true(demo_pg.is_demo_image_visible(i))
