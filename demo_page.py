@@ -1,8 +1,45 @@
+#!/usr/bin/env python
+#
+# ***** BEGIN LICENSE BLOCK *****
+# Version: MPL 1.1/GPL 2.0/LGPL 2.1
+#
+# The contents of this file are subject to the Mozilla Public License Version
+# 1.1 (the "License"); you may not use this file except in compliance with
+# the License. You may obtain a copy of the License at
+# http://www.mozilla.org/MPL/
+#
+# Software distributed under the License is distributed on an "AS IS" basis,
+# WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+# for the specific language governing rights and limitations under the
+# License.
+#
+# The Original Code is MDN
+#
+# The Initial Developer of the Original Code is
+# Mozilla Corp.
+# Portions created by the Initial Developer are Copyright (C) 2010
+# the Initial Developer. All Rights Reserved.
+#
+# Contributor(s): Raymond Etornam Agbeame
+#
+# Alternatively, the contents of this file may be used under the terms of
+# either the GNU General Public License Version 2 or later (the "GPL"), or
+# the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+# in which case the provisions of the GPL or the LGPL are applicable instead
+# of those above. If you wish to allow use of your version of this file only
+# under the terms of either the GPL or the LGPL,and not to allow others to
+# use your version of this file under the terms of the MPL, indicate your
+# decision by deleting the provisions above and replace them with the notice
+# and other provisions required by the GPL or the LGPL. If you do not delete
+# the provisions above, a recipient may use your version of this file under
+# the terms of any one of the MPL, the GPL or the LGPL.
+#
+# ***** END LICENSE BLOCK *****
 from selenium import selenium
 from page import Page
 
 
-class DemoPage(Page):  
+class DemoPage(Page):
     _count = 1
     _topics_link_locator = "css=.toggle"
     _docs_link_locator = "css=.docs"
@@ -11,7 +48,7 @@ class DemoPage(Page):
     _forums_link_locator = "css=.community"
     _join_mdn_locator = "css=.wrap>p:nth-child(1)>a"
     _login_locator = "css=.wrap>p:nth-child(2)>a"
-    _search_mdn_locator ="css=#q"
+    _search_mdn_locator = "css=#q"
     _demo_studio_locator = "css=#demos-head>h1"
     _learn_more_locator = "css=.learnmore>a"
     _submit_demo_locator = "css=.demo-buttons>li.submit"
@@ -25,12 +62,12 @@ class DemoPage(Page):
     _most_liked_sort_locator = "css=.sort>li:nth-child(3)>a"
     _most_recent_sort_locator = "css=.sort>li:nth-child(1)>a"
     _demo_image_count_locator = "css=.demo>.demo-title>a>img"
-    _demo_title_count_locator ="css=.demo>.demo-title>a"
+    _demo_title_count_locator = "css=.demo>.demo-title>a"
     _footer_img_locator = "css=#legal>img"
     _footer_rss_link_locator = "css=.feed>a"
     _footer_bar_feedback_link_locator = "css=#footbar>div.wrap>p>a"
     _footer_licenses_link_locator = "css=#legal>p>a:nth-child(1)"
-    _footer_about_link_locator= "css=#legal>p>a:nth-child(2)"
+    _footer_about_link_locator = "css=#legal>p>a:nth-child(2)"
     _footer_privacy_link_locator = "css=#legal>p>a:nth-child(3)"
     _footer_help_link_locator = "css=#legal>p>a:nth-child(4)"
 
