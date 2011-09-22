@@ -25,6 +25,8 @@ followed by
     sudo pip install pytest 
     sudo pip install pytest-xdist
     sudo pip install selenium
+    sudo pip install unittestzero
+    sudo pip install pytest-mozwebqa
     
 to install the required Python libraries.
 
@@ -33,19 +35,18 @@ Once this is all set up you will need to download and start a Selenium server. Y
 
 To start the Selenium server run the following command:
 
-    java -jar ~/Downloads/selenium-server-standalone-2.0b1.jar
+    java -jar ~/Downloads/selenium-server-standalone-x.x.jar (where x.x is current shipping version)
 
 Change the path/name to the downloaded Selenium server file.
 
 [Selenium Downloads]: http://code.google.com/p/selenium/downloads/list
 
-### vars.py
-Edit the vars.py file to specify the browser you will want to run your tests in. Common values are *\*firefox*, *\*safari*, *\*iexplore*, *\*googlechrome*
+
 
 Once the above prerequisites have been met you can run the tests using the
 following command:
 
-    py.test-2.6 .
+    py.test --api=rc --browser=*firefox --baseurl=http://developer-stage9.mozilla.org --timeout=120000
 
 Writing Tests
 -------------
