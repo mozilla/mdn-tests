@@ -1,169 +1,207 @@
+#!/usr/bin/env python
+#
+# ***** BEGIN LICENSE BLOCK *****
+# Version: MPL 1.1/GPL 2.0/LGPL 2.1
+#
+# The contents of this file are subject to the Mozilla Public License Version
+# 1.1 (the "License"); you may not use this file except in compliance with
+# the License. You may obtain a copy of the License at
+# http://www.mozilla.org/MPL/
+#
+# Software distributed under the License is distributed on an "AS IS" basis,
+# WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+# for the specific language governing rights and limitations under the
+# License.
+#
+# The Original Code is MDN
+#
+# The Initial Developer of the Original Code is
+# Mozilla Corp.
+# Portions created by the Initial Developer are Copyright (C) 2010
+# the Initial Developer. All Rights Reserved.
+#
+# Contributor(s): Raymond Etornam Agbeame
+#
+# Alternatively, the contents of this file may be used under the terms of
+# either the GNU General Public License Version 2 or later (the "GPL"), or
+# the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+# in which case the provisions of the GPL or the LGPL are applicable instead
+# of those above. If you wish to allow use of your version of this file only
+# under the terms of either the GPL or the LGPL,and not to allow others to
+# use your version of this file under the terms of the MPL, indicate your
+# decision by deleting the provisions above and replace them with the notice
+# and other provisions required by the GPL or the LGPL. If you do not delete
+# the provisions above, a recipient may use your version of this file under
+# the terms of any one of the MPL, the GPL or the LGPL.
+#
+# ***** END LICENSE BLOCK *****
 from selenium import selenium
-import vars
 from page import Page
 
+
 class DemoPage(Page):
-
-    _header_image_locator = 'css=#logo > a img'
-    _login_locator = \
-    'css=#utility > p.user-state > a:nth-child(1)'
-    _signup_locator = \
-    'css=#utility >p.user-state > a:nth-child(2)'
-    _featured_demos_header_locator = \
-    'css=#featured-demos>header > h2'
+    _count = 1
+    _topics_link_locator = "css=.toggle"
+    _docs_link_locator = "css=.docs"
+    _demos_link_locator = "css=.demos"
+    _learning_link_locator = "css=.learning"
+    _forums_link_locator = "css=.community"
+    _join_mdn_locator = "css=.wrap>p:nth-child(1)>a"
+    _login_locator = "css=.wrap>p:nth-child(2)>a"
     _search_mdn_locator = "css=#q"
-    _search_locator = 'css=input#search-demos'
-    _search_heading_locator = "css=.page-title"
-    _most_viewed_locator = \
-    'css=#gallery-sort >.sort > li:nth-child(1) > a'
-    _most_liked_locator = \
-    'css=#gallery-sort >.sort > li:nth-child(2) > a'
-    _most_recent_locator = \
-    'css=#gallery-sort >.sort > li:nth-child(3) >a'
-    _submit__demo_locator = \
-    'css=#page-head.landing > p .aide demo-submit'
-    _feedback_locator = \
-    'css=#footbar > div.wrap> p >a'
-    _footer_image_locator = 'css=#legal > img'
-    _footer_copyright_text_locator = \
-    'css=#legal > p#copyright'
-    _footer_license_locator = \
-    'css=#legal > p >a:nth-child(1)'
-    _footer_about_locator = \
-    'css=#legal >p > a:nth-child(2)'
-    _footer_privacy_policy_locator = \
-    'css=#legal > p > a:nth-child(3)'
-    _footer_language_locator = 'css=select#language'
-    _footer_login_locator = \
-    'css=#site-info >.wrap >.user-state>a:nth-child(1)'
-    _footer_signup_locator = \
-    'css=#site-info > .wrap > .user-state>a:nth-child(2)'
-    _technology_locator = 'css=.cols-2 > li > a'
-    _demo_locator = 'ul>li.demo>.demo-title>a>img'
+    _demo_studio_locator = "css=#demos-head>h1"
+    _learn_more_locator = "css=.learnmore>a"
+    _submit_demo_locator = "css=.demo-buttons>li.submit"
+    _join_derby_button_locator = "css=#derby-cta>a"
+    _featured_demo_header_locator = "css=#featured-demos>header>h2"
+    _browse_by_technology_locator = "css=#div#demo-tags>a"
+    _tag_count = "css=#tags-list>li"
+    _total_demo_count_locator = "css=.count"
+    _up_and_coming_sort_locator = "css=.sort>li:nth-child(1)>a"
+    _most_viewed_sort_locator = "css=.sort>li:nth-child(2)>a"
+    _most_liked_sort_locator = "css=.sort>li:nth-child(3)>a"
+    _most_recent_sort_locator = "css=.sort>li:nth-child(1)>a"
+    _demo_image_count_locator = "css=.demo>.demo-title>a>img"
+    _demo_title_count_locator = "css=.demo>.demo-title>a"
+    _footer_img_locator = "css=#legal>img"
+    _footer_rss_link_locator = "css=.feed>a"
+    _footer_bar_feedback_link_locator = "css=#footbar>div.wrap>p>a"
+    _footer_licenses_link_locator = "css=#legal>p>a:nth-child(1)"
+    _footer_about_link_locator = "css=#legal>p>a:nth-child(2)"
+    _footer_privacy_link_locator = "css=#legal>p>a:nth-child(3)"
+    _footer_help_link_locator = "css=#legal>p>a:nth-child(4)"
 
-   
-    @property
-    def get_tags(self):
-        technology_text =[]
-        technology_visible =[]
-        count = self.selenium.get_css_count(self._technology_locator)
-        for i in range(1,count):
-            locator = "css=.cols-2>li:nth-child(%d)>a" % i
-            technology_text.append(self.selenium.get_text(locator))
-            technology_visible.append(self.selenium.is_visible(locator))
-        return dict(zip(technology_text, technology_visible))
-        
-    @property
-    def get_tag_links(self):
-        tag_links_text = []
-        tag_links = []
-        count = self.selenium.get_css_count(self._technology_locator) 
-        for i in range(1,count):
-            locator = "css=.cols-2>li:nth-child(%d)>a" % i
-            tag_links_text.append(self.selenium.get_text(locator))
-            self.click(locator,True)
-            tag_links.append(self.selenium.get_location())
-        return dict(zip(tag_links_text, tag_links))
-        
-    def iterate_demos(self):
-        demo_text = []
-        is_demo_present = []
-        count = self.selenium.get_css_count(self._demo_locator)
-        for i in range (1,count):
-            locator = "ul>li.demo:nth-child(%d)>.demo-title>a>mg" % i
-            print self.selenium.get_text(locator)
-            demo_text.append(self.selenium.get_text(locator))
-            is_demo_present.append(self.selenium.is_element_present(locator))
-        return dict(zip(demo_text,is_demo_present))
-
+    def go_to_demo_page(self):
+        self.open("/demos")
 
     @property
-    def go_to_page(self,url="demos/"):
-        self.open(url)
-        print self.get_url_current_page()
+    def is_topics_link_visible(self):
+        return self.is_element_visible(self._topics_link_locator)
 
     @property
-    def get_header_image(self):
-        return self.is_element_present(self._header_image_locator)
+    def is_docs_link_visible(self):
+        return self.is_element_visible(self._docs_link_locator)
 
     @property
-    def get_login_link(self):
-        return self.is_element_present(self._login_locator)
+    def is_demos_link_visible(self):
+        return self.is_element_visible(self._demos_link_locator)
 
     @property
-    def get_signup_link(self):
-        return self.is_element_present(self._signup_locator)
+    def is_learning_link_visible(self):
+        return self.is_element_visible(self._learning_link_locator)
 
     @property
-    def get_search_mdn(self):
-        return self.is_element_present(self._search_mdn_locator)
+    def is_forums_link_visible(self):
+        return self.is_element_visible(self._forums_link_locator)
 
     @property
-    def get_featured_demos_header(self):
-        return self.is_element_present(self._featured_demos_header_locator)
+    def is_join_mdn_link_visible(self):
+        return self.is_element_visible(self._join_mdn_locator)
 
     @property
-    def search(self):
-        return self.is_element_present(self._search_locator)
+    def is_login_link_visible(self):
+        return self.is_element_visible(self._login_locator)
 
     @property
-    def search_heading(self):
-        return is_element_present(self._search_heading_locator)
-
-
-    @property
-    def perform_search(self,locator,term):
-        self.selenium.type(locator, term + "\15")
-        return self.search_heading
+    def is_search_mdn_link_visible(self):
+        return self.is_element_visible(self._search_mdn_locator)
 
     @property
-    def most_viewed(self):
-        return self.is_element_present(self._most_viewed_locator)
+    def is_demo_studio_link_visible(self):
+        return self.is_element_visible(self._demo_studio_locator)
 
     @property
-    def most_liked(self):
-        return self.is_element_present(self._most_liked_locator)
+    def is_learn_more_link_visible(self):
+        return self.is_element_visible(self._learn_more_locator)
 
     @property
-    def most_recent(self):
-        return self.is_element_present(self._most_recent_locator)
+    def is_submit_demo_link_visible(self):
+        return self.is_element_visible(self._submit_demo_locator)
 
     @property
-    def submit_demo(self):
-        return self.is_element_present(_submit_demo_locator)
+    def is_join_derby_link_visible(self):
+        return self.is_element_visible(self._jon_derby_locator)
 
     @property
-    def feedback(self):
-        return self.is_element_present(self._feedback_locator)
+    def is_featured_demo_header_visible(self):
+        return self.is_element_visible(self._featured_demo_header_locator)
 
     @property
-    def footer_image(self):
-        return self.is_element_present(self._footer_image_locator)
+    def is_browse_by_technology_link_visible(self):
+        return self.is_element_visible(self._browse_by_technology_locator)
+
+    def get_tag_count(self):
+        return self.get_css_count(self._tag_count)
+
+    def get_tag(self, count):
+        _tag = "css=#tags-list>li:nth-child(%d)" % count
+        return self.is_element_visible(_tag)
+
+    def visit_tag_url(self, count):
+        _tag = "css=#tags-list>li:nth-child(%d)" % count
+        self.click(_tag, True)
+        return self.get_url_current_page()
 
     @property
-    def footer_copyright_text(self):
-        return self.is_element_present(self._footer_copyright_text_locator)
+    def is_total_demo_count_visible(self):
+        return self.is_element_visible(self._total_demo_count)
 
     @property
-    def footer_license(self):
-        return self.is_element_present(self._footer_license_locator)
+    def is_up_and_coming_sort_visible(self):
+        return self.is_element_visible(self._up_and_coming_sort_locator)
 
     @property
-    def footer_about(self):
-        return self.is_element_present(self._footer_about_locator)
+    def is_most_viewed_sort_visible(self):
+        return self.is_element_visible(self._most_viewed_sort_locator)
 
     @property
-    def footer_privacy_policy(self):
-        return self.is_element_present(self._footer_privacy_policy_locator)
+    def is_most_liked_sort_visible(self):
+        return self.is_element_visible(self._most_liked_sort_locator)
 
     @property
-    def footer_language(self):
-        return self.is_element_present(self._footer_language_locator)
+    def is_most_recent_sort_visible(self):
+        return self.is_element_visible(self._most_recent_sort_locator)
+
+    def get_demo_image_count(self):
+        return self.get_css_count(self._demo_image_count_locator)
+
+    def is_demo_image_visible(self, count):
+        _demo_image_locator = \
+        "css=.demo:nth-child(%d)>.demo-title>a>img" % count
+        return self.is_element_visible(_demo_image_locator)
+
+    def get_demo_title_count(self):
+        return self.get_css_count(self._demo_title_count_locator)
+
+    def is_demo_title_visible(self, count):
+        _demo_title_locator = \
+        "css=.demo:nth-child(%d)>.demo-title>a" % count
+        return self.is_element_visible(_demo_title_locator)
 
     @property
-    def footer_login(self):
-        return self.is_element_present(self._footer_login_locator)
+    def is_footer_img_visible(self):
+        return self.is_element_visible(self._footer_img_locator)
 
     @property
-    def footer_signup(self):
-        return self.is_element_present(self._footer_signup_locator) 
+    def is_footer_rss_link_visible(self):
+        return self.is_element_visible(self._footer_rss_link_locator)
+
+    @property
+    def is_footer_bar_feedback_link_visible(self):
+        return self.is_element_visible(self._footer_bar_feedback_link_locator)
+
+    @property
+    def is_footer_licenses_link_visible(self):
+        return self.is_element_visible(self._footer_licenses_link_locator)
+
+    @property
+    def is_footer_about_link_visible(self):
+        return self.is_element_visible(self._footer_about_link_locator)
+
+    @property
+    def is_footer_privacy_link_visible(self):
+        return self.is_element_visible(self._footer_privacy_link_locator)
+
+    @property
+    def is_footer_help_link_visible(self):
+        return self.is_element_visible(self._footer_help_link_locator)
