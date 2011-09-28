@@ -39,6 +39,46 @@ from selenium import selenium
 from page import Page
 
 
+class ProfilePage(Page):
+    _login_link_locator = "css=.minor>.wrap>p.user-state>a:nth-of-type(2)"
+    _username_locator = "css=#text-username"
+    _password_locator = "css=#password-password"
+    _login_button_locator = "css=.input-button"
+    _nickname_locator = "css=.nickname"
+    _irc_locator = "css=.irc"
+    _company_locator = "css=.org"
+    _title_locator = "css=.title"
+    _photo_locator = "css=.photo"
+    _website_locator = "css=.website>.url"
+    _twitter_locator = "css=.twitter>.url"
+    _github_locator = "css=.github>.url"
+    _docs_userpage_locator = "css=.docs>.url"
+
+    def log_user_in(self, user="default"):
+        self.open("/Special:UserLogin?returntotitle=%2Fen-US%2Fprofiles%2Ftestaccount%2F")
+        credentials = self.testsetup.credentials[user]
+        self.selenium.type(self._username_locator, credentials['username'])
+        self.selenium.type(self._password_locator, credentials['password'])
+        self.selenium.click(self._login_button_locator)
+        self.selenium.wait_for_page_to_load(self.timeout)
+
+    @property
+    def is_nickname_visible(self):
+        return self.is_element_visible(self._nickname_locator)
+
+    @property
+    def is_irc_link_visible(self):
+        return self.is_element_visible(self._irc_locator)
+
+    @property
+    def is_company_link_visible(self):
+        return self.is_element_visible(self._company_locator)
+
+    @property
+    def is_title_link_visible(self):
+        return self.is_element_visible(self._title_locator)
+
+
 class DemoPage(Page):
     _count = 1
     _topics_link_locator = "css=.toggle"

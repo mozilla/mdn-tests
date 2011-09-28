@@ -1,5 +1,7 @@
 *.pyc
 locators 
 one
+debug/
 results.html
+*.yaml
 
