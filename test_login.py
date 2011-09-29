@@ -35,7 +35,6 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
 from unittestzero import Assert
 from demo_page import ProfilePage
 
@@ -44,7 +43,7 @@ class TestLogin:
 
     def test_login(self, mozwebqa):
         profile_page = ProfilePage(mozwebqa)
-        profile_page.open("/en-US/profiles/testaccount/")
+        profile_page.go_to_profile_page()
         profile_page.log_user_in()
         profile_page.is_nickname_visible
         profile_page.is_irc_link_visible

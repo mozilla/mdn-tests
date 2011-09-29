@@ -40,7 +40,7 @@ from page import Page
 
 
 class ProfilePage(Page):
-    _login_link_locator = "css=.minor>.wrap>p.user-state>a:nth-of-type(2)"
+    _login_link_locator = "css=.minor > .wrap > p.user-state > a:nth-of-type(2)"
     _username_locator = "css=#text-username"
     _password_locator = "css=#password-password"
     _login_button_locator = "css=.input-button"
@@ -49,10 +49,13 @@ class ProfilePage(Page):
     _company_locator = "css=.org"
     _title_locator = "css=.title"
     _photo_locator = "css=.photo"
-    _website_locator = "css=.website>.url"
-    _twitter_locator = "css=.twitter>.url"
-    _github_locator = "css=.github>.url"
-    _docs_userpage_locator = "css=.docs>.url"
+    _website_locator = "css=.website > .url"
+    _twitter_locator = "css=.twitter > .url"
+    _github_locator = "css=.github > .url"
+    _docs_userpage_locator = "css=.docs > .url"
+
+    def go_to_profile_page(self):
+        self.open("/en-US/profiles/testaccount/")
 
     def log_user_in(self, user="default"):
         self.open("/Special:UserLogin?returntotitle=%2Fen-US%2Fprofiles%2Ftestaccount%2F")
@@ -86,30 +89,30 @@ class DemoPage(Page):
     _demos_link_locator = "css=.demos"
     _learning_link_locator = "css=.learning"
     _forums_link_locator = "css=.community"
-    _join_mdn_locator = "css=.wrap>p:nth-child(1)>a"
-    _login_locator = "css=.wrap>p:nth-child(2)>a"
+    _join_mdn_locator = "css=.wrap > p:nth-child(1) > a"
+    _login_locator = "css=.wrap > p:nth-child(2) > a"
     _search_mdn_locator = "css=#q"
-    _demo_studio_locator = "css=#demos-head>h1"
-    _learn_more_locator = "css=.learnmore>a"
-    _submit_demo_locator = "css=.demo-buttons>li.submit"
-    _join_derby_button_locator = "css=#derby-cta>a"
-    _featured_demo_header_locator = "css=#featured-demos>header>h2"
-    _browse_by_technology_locator = "css=#div#demo-tags>a"
+    _demo_studio_locator = "css=#demos-head > h1"
+    _learn_more_locator = "css=.learnmore > a"
+    _submit_demo_locator = "css=.demo-buttons > li.submit"
+    _join_derby_button_locator = "css=#derby-cta > a"
+    _featured_demo_header_locator = "css=#featured-demos > header > h2"
+    _browse_by_technology_locator = "css=#div#demo-tags > a"
     _tag_count = "css=#tags-list>li"
     _total_demo_count_locator = "css=.count"
-    _up_and_coming_sort_locator = "css=.sort>li:nth-child(1)>a"
-    _most_viewed_sort_locator = "css=.sort>li:nth-child(2)>a"
-    _most_liked_sort_locator = "css=.sort>li:nth-child(3)>a"
-    _most_recent_sort_locator = "css=.sort>li:nth-child(1)>a"
-    _demo_image_count_locator = "css=.demo>.demo-title>a>img"
-    _demo_title_count_locator = "css=.demo>.demo-title>a"
-    _footer_img_locator = "css=#legal>img"
-    _footer_rss_link_locator = "css=.feed>a"
-    _footer_bar_feedback_link_locator = "css=#footbar>div.wrap>p>a"
-    _footer_licenses_link_locator = "css=#legal>p>a:nth-child(1)"
-    _footer_about_link_locator = "css=#legal>p>a:nth-child(2)"
-    _footer_privacy_link_locator = "css=#legal>p>a:nth-child(3)"
-    _footer_help_link_locator = "css=#legal>p>a:nth-child(4)"
+    _up_and_coming_sort_locator = "css=.sort > li:nth-child(1) > a"
+    _most_viewed_sort_locator = "css=.sort > li:nth-child(2) > a"
+    _most_liked_sort_locator = "css=.sort > li:nth-child(3) > a"
+    _most_recent_sort_locator = "css=.sort > li:nth-child(1) > a"
+    _demo_image_count_locator = "css=.demo > .demo-title > a > img"
+    _demo_title_count_locator = "css=.demo > .demo-title > a"
+    _footer_img_locator = "css=#legal > img"
+    _footer_rss_link_locator = "css=.feed > a"
+    _footer_bar_feedback_link_locator = "css=#footbar > div.wrap > p > a"
+    _footer_licenses_link_locator = "css=#legal > p > a:nth-child(1)"
+    _footer_about_link_locator = "css=#legal > p > a:nth-child(2)"
+    _footer_privacy_link_locator = "css=#legal > p > a:nth-child(3)"
+    _footer_help_link_locator = "css=#legal > p > a:nth-child(4)"
 
     def go_to_demo_page(self):
         self.open("/demos")
@@ -174,11 +177,11 @@ class DemoPage(Page):
         return self.get_css_count(self._tag_count)
 
     def get_tag(self, count):
-        _tag = "css=#tags-list>li:nth-child(%d)" % count
+        _tag = "css=#tags-list >li:nth-child(%d)" % count
         return self.is_element_visible(_tag)
 
     def visit_tag_url(self, count):
-        _tag = "css=#tags-list>li:nth-child(%d)" % count
+        _tag = "css=#tags-list > li:nth-child(%d)" % count
         self.click(_tag, True)
         return self.get_url_current_page()
 
@@ -207,7 +210,7 @@ class DemoPage(Page):
 
     def is_demo_image_visible(self, count):
         _demo_image_locator = \
-        "css=.demo:nth-child(%d)>.demo-title>a>img" % count
+        "css=.demo:nth-child(%d) > .demo-title > a > img" % count
         return self.is_element_visible(_demo_image_locator)
 
     def get_demo_title_count(self):
@@ -215,7 +218,7 @@ class DemoPage(Page):
 
     def is_demo_title_visible(self, count):
         _demo_title_locator = \
-        "css=.demo:nth-child(%d)>.demo-title>a" % count
+        "css=.demo:nth-child(%d) >.demo-title > a" % count
         return self.is_element_visible(_demo_title_locator)
 
     @property

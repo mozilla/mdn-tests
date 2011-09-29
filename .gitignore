@@ -2,6 +2,7 @@
 locators 
 one
 debug/
+results/
 results.html
 *.yaml
 
