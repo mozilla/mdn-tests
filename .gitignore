@@ -2,7 +2,7 @@
 locators 
 one
 debug/
-results/
+results/**
 results.html
-*.yaml
+mdn.yaml
 
