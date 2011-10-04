@@ -98,7 +98,7 @@ class DemoPage(Page):
     _join_derby_button_locator = "css=#derby-cta > a"
     _featured_demo_header_locator = "css=#featured-demos > header > h2"
     _browse_by_technology_locator = "css=#div#demo-tags > a"
-    _tag_count = "css=#tags-list>li"
+    _tag_count = "css=#tags-list > li"
     _total_demo_count_locator = "css=.count"
     _up_and_coming_sort_locator = "css=.sort > li:nth-child(1) > a"
     _most_viewed_sort_locator = "css=.sort > li:nth-child(2) > a"
@@ -177,7 +177,7 @@ class DemoPage(Page):
         return self.get_css_count(self._tag_count)
 
     def get_tag(self, count):
-        _tag = "css=#tags-list >li:nth-child(%d)" % count
+        _tag = "css=#tags-list > li:nth-child(%d)" % count
         return self.is_element_visible(_tag)
 
     def visit_tag_url(self, count):
@@ -218,7 +218,7 @@ class DemoPage(Page):
 
     def is_demo_title_visible(self, count):
         _demo_title_locator = \
-        "css=.demo:nth-child(%d) >.demo-title > a" % count
+        "css=.demo:nth-child(%d) > .demo-title > a" % count
         return self.is_element_visible(_demo_title_locator)
 
     @property
