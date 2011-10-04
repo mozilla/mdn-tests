@@ -1,5 +1,8 @@
 *.pyc
 locators 
 one
+debug/
+results/**
 results.html
+mdn.yaml
 
