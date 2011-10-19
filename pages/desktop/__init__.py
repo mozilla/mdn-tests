@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#
+
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -13,10 +13,10 @@
 # for the specific language governing rights and limitations under the
 # License.
 #
-# The Original Code is MDN
+# The Original Code is Mozilla WebQA Selenium Tests.
 #
 # The Initial Developer of the Original Code is
-# Mozilla Corp.
+# Mozilla.
 # Portions created by the Initial Developer are Copyright (C) 2011
 # the Initial Developer. All Rights Reserved.
 #
@@ -27,7 +27,7 @@
 # the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
 # in which case the provisions of the GPL or the LGPL are applicable instead
 # of those above. If you wish to allow use of your version of this file only
-# under the terms of either the GPL or the LGPL,and not to allow others to
+# under the terms of either the GPL or the LGPL, and not to allow others to
 # use your version of this file under the terms of the MPL, indicate your
 # decision by deleting the provisions above and replace them with the notice
 # and other provisions required by the GPL or the LGPL. If you do not delete
@@ -35,17 +35,3 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from unittestzero import Assert
-from pages.desktop.demo import ProfilePage
-
-
-class TestLogin:
-
-    def test_login(self, mozwebqa):
-        profile_page = ProfilePage(mozwebqa)
-        profile_page.go_to_profile_page()
-        profile_page.log_user_in()
-        profile_page.is_nickname_visible
-        profile_page.is_irc_link_visible
-        profile_page.is_company_link_visible
-        profile_page.is_title_link_visible
