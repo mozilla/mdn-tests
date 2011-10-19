@@ -35,10 +35,9 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
 from unittestzero import Assert
-from demo_page import DemoPage
-from derby_page import DerbyPage
+from pages.desktop.demo import DemoPage
+from pages.desktop.derby import DerbyPage
 import pytest
 xfail = pytest.mark.xfail
 
