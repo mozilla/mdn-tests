@@ -35,10 +35,10 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
+
 from unittestzero import Assert
-from demo_page import DemoPage
-from learn_page import LearnPage
+from pages.desktop.demo import DemoPage
+from pages.desktop.learn import LearnPage
 
 
 class TestLearnPage:
