@@ -53,12 +53,6 @@ class TestHomepage:
         Assert.true(demo_pg.is_login_link_visible)
         Assert.true(demo_pg.is_search_mdn_link_visible)
         Assert.true(demo_pg.is_demo_studio_link_visible)
-        Assert.true(demo_pg.is_learning_link_visible)
-        Assert.true(demo_pg.is_forums_link_visible)
-        Assert.true(demo_pg.is_join_mdn_link_visible)
-        Assert.true(demo_pg.is_login_link_visible)
-        Assert.true(demo_pg.is_search_mdn_link_visible)
-        Assert.true(demo_pg.is_demo_studio_link_visible)
         Assert.true(demo_pg.is_learn_more_link_visible)
 
     def test_footer_links(self, mozwebqa):
