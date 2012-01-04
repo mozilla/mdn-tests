@@ -61,13 +61,9 @@ class TestLearnPage:
         Assert.true(learn_pg.is_demos_link_visible)
         Assert.true(learn_pg.is_learning_link_visible)
         Assert.true(learn_pg.is_forums_link_visible)
-        Assert.true(learn_pg.is_join_mdn_link_visible)
-        Assert.true(learn_pg.is_login_link_visible)
         Assert.true(learn_pg.is_search_mdn_link_visible)
         Assert.true(learn_pg.is_learning_link_visible)
         Assert.true(learn_pg.is_forums_link_visible)
-        Assert.true(learn_pg.is_join_mdn_link_visible)
-        Assert.true(learn_pg.is_login_link_visible)
         Assert.true(learn_pg.is_search_mdn_link_visible)
 
     def test_page_elements_are_visible(self, mozwebqa):
