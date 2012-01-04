@@ -43,7 +43,7 @@ xfail = pytest.mark.xfail
 
 class TestLogin:
 
-    @xfail(reason='We dont have browserID on stage yet')
+    @xfail(reason="We don't have BrowserID on stage yet")
     def test_login(self, mozwebqa):
         profile_page = ProfilePage(mozwebqa)
         profile_page.go_to_profile_page()
