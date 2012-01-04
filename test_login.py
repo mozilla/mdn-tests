@@ -37,10 +37,13 @@
 # ***** END LICENSE BLOCK *****
 from unittestzero import Assert
 from pages.desktop.demo import ProfilePage
+import pytest
+xfail = pytest.mark.xfail
 
 
 class TestLogin:
 
+    @xfail(reason='We dont have browserID on stage yet')
     def test_login(self, mozwebqa):
         profile_page = ProfilePage(mozwebqa)
         profile_page.go_to_profile_page()
