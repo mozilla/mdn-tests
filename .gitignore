@@ -1,4 +1,9 @@
 *.pyc
+mdn.yaml
 locators 
-one 
+one
+debug/
+results/**
+results.html
+mdn.yaml
 
