@@ -8,11 +8,14 @@ from unittestzero import Assert
 from pages.desktop.demo import DemoPage
 from pages.desktop.derby import DerbyPage
 import pytest
+
 xfail = pytest.mark.xfail
+nondestructive = pytest.mark.nondestructive
 
 
 class TestDevDerbyPage:
 
+    @nondestructive
     def test_are_footer_links_visible(self, mozwebqa):
         derby_pg = DemoPage(mozwebqa)
         derby_pg.open("en-US/demos/devderby")
@@ -24,6 +27,7 @@ class TestDevDerbyPage:
         Assert.true(derby_pg.is_footer_help_link_visible)
 
     @xfail(reason="No derby winners on production yet")
+    @nondestructive
     def test_derby_links_visible(self, mozwebqa):
         derby_pg = DerbyPage(mozwebqa)
         derby_pg.go_to_derby_page()
@@ -44,13 +48,14 @@ class TestDevDerbyPage:
         Assert.true(derby_pg.is_prizes_image_visible)
         Assert.equal(derby_pg.get_prizes_text, "Prizes")
 
+    @nondestructive
     def test_judge_images_visible(self, mozwebqa):
         derby_pg = DerbyPage(mozwebqa)
         derby_pg.go_to_derby_page()
         number_of_judges = derby_pg.get_number_of_judges
         for i in range(1, number_of_judges):
             Assert.true(derby_pg.is_judge_photo_visible(i))
-
+    @nondestructive
     def test_are_previous_challenges_present(self, mozwebqa):
         derby_pg = DerbyPage(mozwebqa)
         derby_pg.go_to_derby_page()
