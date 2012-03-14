@@ -9,13 +9,12 @@ from pages.desktop.demo import ProfilePage
 import pytest
 
 xfail = pytest.mark.xfail
-nondestructive = pytest.mark.nondestructive
 
 
 class TestLogin:
 
     @xfail(reason="We don't have BrowserID on stage yet")
-    @nondestructive
+    @pytest.mark.nondestructive
     def test_login(self, mozwebqa):
         profile_page = ProfilePage(mozwebqa)
         profile_page.go_to_profile_page()
