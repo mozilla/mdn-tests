@@ -11,6 +11,7 @@ import pytest
 xfail = pytest.mark.xfail
 nondestructive = pytest.mark.nondestructive
 
+
 class TestLogin:
 
     @xfail(reason="We don't have BrowserID on stage yet")

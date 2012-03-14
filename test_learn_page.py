@@ -10,6 +10,7 @@ from pages.desktop.learn import LearnPage
 
 nondestructive = pytest.mark.nondestructive
 
+
 class TestLearnPage:
 
     @nondestructive
