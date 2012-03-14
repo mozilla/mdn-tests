@@ -11,6 +11,7 @@ from pages.desktop.learn import LearnPage
 
 class TestLearnPage:
 
+    @pytest.mark.nondestructive
     def test_are_footer_links_visible(self, mozwebqa):
         learn_pg = DemoPage(mozwebqa)
         learn_pg.open("en-US/learn")
@@ -21,6 +22,7 @@ class TestLearnPage:
         Assert.true(learn_pg.is_footer_privacy_link_visible)
         Assert.true(learn_pg.is_footer_help_link_visible)
 
+    @pytest.mark.nondestructive
     def test_header_links_visible(self, mozwebqa):
         learn_pg = DemoPage(mozwebqa)
         learn_pg.open("en-US/learn")
@@ -34,6 +36,7 @@ class TestLearnPage:
         Assert.true(learn_pg.is_forums_link_visible)
         Assert.true(learn_pg.is_search_mdn_link_visible)
 
+    @pytest.mark.nondestructive
     def test_page_elements_are_visible(self, mozwebqa):
         learn_pg = LearnPage(mozwebqa)
         learn_pg.go_to_learn_page()

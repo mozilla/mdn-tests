@@ -10,6 +10,7 @@ from pages.desktop.demo import DemoPage
 
 class TestHomepage:
 
+    @pytest.mark.nondestructive
     def test_header_links(self, mozwebqa):
         demo_pg = DemoPage(mozwebqa)
         demo_pg.go_to_demo_page()
@@ -23,6 +24,7 @@ class TestHomepage:
         Assert.true(demo_pg.is_search_mdn_link_visible)
         Assert.true(demo_pg.is_learn_more_link_visible)
 
+    @pytest.mark.nondestructive
     def test_footer_links(self, mozwebqa):
         demo_pg = DemoPage(mozwebqa)
         demo_pg.go_to_demo_page()
@@ -34,6 +36,7 @@ class TestHomepage:
         Assert.true(demo_pg.is_footer_privacy_link_visible)
         Assert.true(demo_pg.is_footer_help_link_visible)
 
+    @pytest.mark.nondestructive
     def test_demo_title(self, mozwebqa):
         demo_pg = DemoPage(mozwebqa)
         demo_pg.open("/demos")
@@ -41,6 +44,7 @@ class TestHomepage:
         for i in range(1, totalDemoTitles + 1):
             Assert.true(demo_pg.is_demo_title_visible(i))
 
+    @pytest.mark.nondestructive
     def test_demo_image(self, mozwebqa):
         demo_pg = DemoPage(mozwebqa)
         demo_pg.open("/demos")
