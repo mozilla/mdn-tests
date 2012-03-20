@@ -8,6 +8,8 @@ from unittestzero import Assert
 from pages.desktop.demo import DemoPage
 from pages.desktop.learn import LearnPage
 
+import pytest
+
 
 class TestLearnPage:
 

@@ -7,6 +7,8 @@
 from unittestzero import Assert
 from pages.desktop.demo import DemoPage
 
+import pytest
+
 
 class TestHomepage:
 
