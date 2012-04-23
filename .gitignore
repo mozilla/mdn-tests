@@ -1,9 +1,4 @@
 *.pyc
+*.komodoproject
 mdn.yaml
-locators 
-one
-debug/
-results/**
-results.html
-mdn.yaml
-
+results
