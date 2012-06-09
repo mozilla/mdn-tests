@@ -81,8 +81,8 @@ class BasePage(Page):
             return ProfilePage(self.testsetup)
 
         @property
-        def is_search_visible(self):
-            return self.is_element_visible(self._search_locator)
+        def is_search_present(self):
+            return self.is_element_present(self._search_locator)
 
         @property
         def browser_id_info(self):
