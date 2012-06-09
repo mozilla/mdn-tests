@@ -23,7 +23,7 @@ class TestDemo:
         Assert.true(demo_pg.header.is_demos_link_visible)
         Assert.true(demo_pg.header.is_learning_link_visible)
         Assert.true(demo_pg.header.is_community_link_visible)
-        Assert.true(demo_pg.header.is_search_visible)
+        Assert.true(demo_pg.header.is_search_present)
 
     @pytest.mark.nondestructive
     def test_footer_links(self, mozwebqa):

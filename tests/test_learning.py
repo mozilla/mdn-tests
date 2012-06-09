@@ -32,7 +32,7 @@ class TestLearning:
         Assert.true(learning_pg.header.is_demos_link_visible)
         Assert.true(learning_pg.header.is_learning_link_visible)
         Assert.true(learning_pg.header.is_community_link_visible)
-        Assert.true(learning_pg.header.is_search_visible)
+        Assert.true(learning_pg.header.is_search_present)
 
     @pytest.mark.nondestructive
     def test_page_elements_are_visible(self, mozwebqa):
