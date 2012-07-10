@@ -1,8 +1,9 @@
 PyYAML==3.10
 UnittestZero
-execnet==1.0.9
-py==1.4.7
-pytest==2.2.3
-pytest-mozwebqa==0.10
+execnet==1.1
+py==1.4.9
+pytest==2.2.4
+pytest-mozwebqa==1.0
 pytest-xdist==1.8
+requests==0.13.2
 selenium
