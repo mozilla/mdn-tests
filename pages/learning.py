@@ -11,7 +11,7 @@ from base import BasePage
 
 class LearningPage(BasePage):
 
-    _page_title = 'Learn How to Make Websites | Mozilla Developer Network'
+    _page_title = 'Learn How to Make Websites | MDN'
 
     _page_title_locator = (By.CSS_SELECTOR, '#page-head .page-title')
     _html_locator = (By.CSS_SELECTOR, '#sub-html h2')
