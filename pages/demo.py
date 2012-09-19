@@ -12,7 +12,7 @@ from base import BasePage
 
 class DemoPage(BasePage):
 
-    _page_title = 'Demo Studio | Mozilla Developer Network'
+    _page_title = 'Demo Studio | MDN'
 
     _demo_studio_locator = (By.CSS_SELECTOR, '#demos-head > h1')
     _learn_more_locator = (By.CSS_SELECTOR, '.learnmore > a')

@@ -12,7 +12,7 @@ from base import BasePage
 
 class DerbyPage(BasePage):
 
-    _page_title = 'Dev Derby | Mozilla Developer Network'
+    _page_title = 'Dev Derby | MDN'
 
     _home_link_locator = (By.CSS_SELECTOR, '#nav-derby > ul > li > em')  # strictly this isn't a link
     _challenges_link_locator = (By.CSS_SELECTOR, '#nav-derby li:nth-child(2) a')
