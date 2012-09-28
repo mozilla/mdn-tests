@@ -34,7 +34,6 @@ class TestDemo:
         Assert.true(demo_pg.footer.is_licenses_link_visible)
         Assert.true(demo_pg.footer.is_about_link_visible)
         Assert.true(demo_pg.footer.is_privacy_link_visible)
-        Assert.true(demo_pg.footer.is_help_link_visible)
 
     @pytest.mark.nondestructive
     def test_page_elements_are_visible(self, mozwebqa):
