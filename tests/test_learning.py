@@ -21,7 +21,6 @@ class TestLearning:
         Assert.true(learning_pg.footer.is_licenses_link_visible)
         Assert.true(learning_pg.footer.is_about_link_visible)
         Assert.true(learning_pg.footer.is_privacy_link_visible)
-        Assert.true(learning_pg.footer.is_help_link_visible)
 
     @pytest.mark.nondestructive
     def test_header_links_visible(self, mozwebqa):
