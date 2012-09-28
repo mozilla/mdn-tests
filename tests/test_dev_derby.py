@@ -32,7 +32,6 @@ class TestDevDerby:
         Assert.true(derby_pg.footer.is_licenses_link_visible)
         Assert.true(derby_pg.footer.is_about_link_visible)
         Assert.true(derby_pg.footer.is_privacy_link_visible)
-        Assert.true(derby_pg.footer.is_help_link_visible)
 
     @pytest.mark.xfail(reason="No derby winners on production yet")
     @pytest.mark.nondestructive
