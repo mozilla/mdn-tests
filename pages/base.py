@@ -103,7 +103,6 @@ class BasePage(Page):
         _licenses_link_locator = (By.CSS_SELECTOR, '#legal > p > a:nth-child(1)')
         _about_link_locator = (By.CSS_SELECTOR, '#legal > p > a:nth-child(2)')
         _privacy_link_locator = (By.CSS_SELECTOR, '#legal > p > a:nth-child(3)')
-        _help_link_locator = (By.CSS_SELECTOR, '#legal > p > a:nth-child(4)')
 
         @property
         def is_logo_visible(self):
@@ -124,7 +123,3 @@ class BasePage(Page):
         @property
         def is_privacy_link_visible(self):
             return self.is_element_visible(self._privacy_link_locator)
-
-        @property
-        def is_help_link_visible(self):
-            return self.is_element_visible(self._help_link_locator)

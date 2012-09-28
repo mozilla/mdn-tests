@@ -32,4 +32,3 @@ class TestHome:
         Assert.true(home_pg.footer.is_licenses_link_visible)
         Assert.true(home_pg.footer.is_about_link_visible)
         Assert.true(home_pg.footer.is_privacy_link_visible)
-        Assert.true(home_pg.footer.is_help_link_visible)
