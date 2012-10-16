@@ -13,56 +13,58 @@ import pytest
 class TestDevDerby:
 
     @pytest.mark.nondestructive
-    def test_header_links(self, mozwebqa):
-        derby_pg = DerbyPage(mozwebqa)
-        derby_pg.go_to_derby_page()
-        Assert.true(derby_pg.header.is_topics_link_visible)
-        Assert.true(derby_pg.header.is_docs_link_visible)
-        Assert.true(derby_pg.header.is_demos_link_visible)
-        Assert.true(derby_pg.header.is_learning_link_visible)
-        Assert.true(derby_pg.header.is_community_link_visible)
-        Assert.true(derby_pg.header.is_search_present)
+    def test_main_nav_links_are_visible(self, mozwebqa):
+        derby_page = DerbyPage(mozwebqa)
+        derby_page.go_to_page()
+        bad_links = []
+        for link in derby_page.header.main_nav_links_list:
+            if not derby_page.is_element_visible(link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        Assert.true(derby_page.header.is_search_present)
 
     @pytest.mark.nondestructive
-    def test_are_footer_links_visible(self, mozwebqa):
-        derby_pg = DerbyPage(mozwebqa)
-        derby_pg.go_to_derby_page()
-        Assert.true(derby_pg.footer.is_logo_visible)
-        Assert.true(derby_pg.footer.is_feedback_link_visible)
-        Assert.true(derby_pg.footer.is_licenses_link_visible)
-        Assert.true(derby_pg.footer.is_about_link_visible)
-        Assert.true(derby_pg.footer.is_privacy_link_visible)
+    def test_footer_links_are_visible(self, mozwebqa):
+        derby_page = DerbyPage(mozwebqa)
+        derby_page.go_to_page()
+        bad_links = []
+        for link in derby_page.footer.footer_links_list:
+            if not derby_page.is_element_visible(link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        Assert.true(derby_page.header.is_search_present)
+        Assert.true(derby_page.footer.is_logo_visible)
 
     @pytest.mark.xfail(reason="No derby winners on production yet")
     @pytest.mark.nondestructive
     def test_derby_links_visible(self, mozwebqa):
-        derby_pg = DerbyPage(mozwebqa)
-        derby_pg.go_to_derby_page()
-        Assert.true(derby_pg.is_home_link_visible)
-        Assert.true(derby_pg.is_challenges_link_visible)
-        Assert.true(derby_pg.is_rules_link_visible)
-        Assert.true(derby_pg.is_judging_link_visible)
-        Assert.true(derby_pg.is_prizes_link_visible)
-        Assert.true(derby_pg.is_resources_link_visible)
-        Assert.true(derby_pg.is_submit_demo_link_visible)
-        Assert.true(derby_pg.is_demo_studio_link_visible)
-        Assert.true(derby_pg.is_previous_winner_banner_visible)
-        Assert.true(derby_pg.is_previous_winner_demo_title_visible)
-        Assert.true(derby_pg.is_previous_winner_name_visible)
-        Assert.true(derby_pg.is_previous_winner_demo_button_visible)
-        Assert.true(derby_pg.is_docs_link_visible)
-        Assert.true(derby_pg.is_demos_link_visible)
-        Assert.true(derby_pg.is_articles_link_visible)
-        Assert.equal(derby_pg.prizes_heading, 'PRIZES')
-        Assert.true(derby_pg.is_prizes_image_visible)
+        derby_page = DerbyPage(mozwebqa)
+        derby_page.go_to_page()
+        Assert.true(derby_page.is_home_link_visible)
+        Assert.true(derby_page.is_challenges_link_visible)
+        Assert.true(derby_page.is_rules_link_visible)
+        Assert.true(derby_page.is_judging_link_visible)
+        Assert.true(derby_page.is_prizes_link_visible)
+        Assert.true(derby_page.is_resources_link_visible)
+        Assert.true(derby_page.is_submit_demo_link_visible)
+        Assert.true(derby_page.is_demo_studio_link_visible)
+        Assert.true(derby_page.is_previous_winner_banner_visible)
+        Assert.true(derby_page.is_previous_winner_demo_title_visible)
+        Assert.true(derby_page.is_previous_winner_name_visible)
+        Assert.true(derby_page.is_previous_winner_demo_button_visible)
+        Assert.true(derby_page.is_docs_link_visible)
+        Assert.true(derby_page.is_demos_link_visible)
+        Assert.true(derby_page.is_articles_link_visible)
+        Assert.equal(derby_page.prizes_heading, 'PRIZES')
+        Assert.true(derby_page.is_prizes_image_visible)
 
     @pytest.mark.nondestructive
     def test_judge_photos_visible(self, mozwebqa):
-        derby_pg = DerbyPage(mozwebqa)
-        derby_pg.go_to_derby_page()
+        derby_page = DerbyPage(mozwebqa)
+        derby_page.go_to_page()
 
-        derby_pg.click_judging_link()
-        all_judges = derby_pg.current_judges + derby_pg.past_judges
+        derby_page.click_judging_link()
+        all_judges = derby_page.current_judges + derby_page.past_judges
         Assert.greater(len(all_judges), 0)
 
         for judge in all_judges:
@@ -70,10 +72,10 @@ class TestDevDerby:
 
     @pytest.mark.nondestructive
     def test_are_previous_challenges_visible(self, mozwebqa):
-        derby_pg = DerbyPage(mozwebqa)
-        derby_pg.go_to_derby_page()
+        derby_page = DerbyPage(mozwebqa)
+        derby_page.go_to_page()
 
-        derby_pg.click_previous_challenges_link()
-        Assert.greater(len(derby_pg.previous_challenges), 0)
-        for challenge in derby_pg.previous_challenges:
+        derby_page.click_previous_challenges_link()
+        Assert.greater(len(derby_page.previous_challenges), 0)
+        for challenge in derby_page.previous_challenges:
             Assert.true(challenge.is_name_visible)

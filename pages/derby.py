@@ -36,7 +36,7 @@ class DerbyPage(BasePage):
     _previous_challenges_link_locator = (By.CSS_SELECTOR, '#current-challenge li:nth-child(5) a')
     _previous_challenges_locator = (By.CSS_SELECTOR, '#tab-previous .previous li')
 
-    def go_to_derby_page(self):
+    def go_to_page(self):
         self.selenium.get(self.base_url + '/demos/devderby')
         self.is_the_current_page
 

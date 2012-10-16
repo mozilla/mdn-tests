@@ -20,7 +20,7 @@ class LearningPage(BasePage):
     _blackboard_locator = (By.ID, 'blackboard')
     _p2p_image_locator = (By.CSS_SELECTOR, '#learn-p2pu > p > a > span')
 
-    def go_to_learning_page(self):
+    def go_to_page(self):
         self.selenium.get(self.base_url + '/learn')
         self.is_the_current_page
 
