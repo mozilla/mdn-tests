@@ -15,14 +15,14 @@ class TestSignIn:
     @pytest.mark.nondestructive
     def test_sign_in(self, mozwebqa):
         home_page = HomePage(mozwebqa)
-        home_page.go_to_home_page()
+        home_page.go_to_page()
         home_page.sign_in()
         Assert.true(home_page.is_signed_in)
 
     @pytest.mark.nondestructive
     def test_sign_out(self, mozwebqa):
         home_page = HomePage(mozwebqa)
-        home_page.go_to_home_page()
+        home_page.go_to_page()
         home_page.sign_in()
         home_page.header.click_sign_out()
         Assert.false(home_page.is_signed_in)
