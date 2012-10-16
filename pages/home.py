@@ -13,6 +13,6 @@ class HomePage(BasePage):
 
     _page_title = 'Mozilla Developer Network'
 
-    def go_to_home_page(self):
+    def go_to_page(self):
         self.selenium.get(self.base_url + '/')
         self.is_the_current_page

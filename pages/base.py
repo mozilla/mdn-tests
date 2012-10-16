@@ -12,6 +12,10 @@ from page import Page
 
 class BasePage(Page):
 
+    def link_destination(self, locator):
+        link = self.selenium.find_element(*locator)
+        return link.get_attribute('href')
+
     def sign_in(self, user='default'):
         credentials = self.testsetup.credentials[user]
         self.header.click_sign_in()
@@ -35,35 +39,29 @@ class BasePage(Page):
 
     class HeaderRegion(Page):
 
-        _topics_link_locator = (By.CSS_SELECTOR, '#nav-main-topics a')
-        _docs_link_locator = (By.CSS_SELECTOR, '#nav-main-docs a')
-        _demos_link_locator = (By.CSS_SELECTOR, '#nav-main-demos a')
-        _learning_link_locator = (By.CSS_SELECTOR, '#nav-main-learning a')
-        _community_link_locator = (By.CSS_SELECTOR, '#nav-main-community a')
         _sign_in_locator = (By.CSS_SELECTOR, '#masthead .browserid-signin')
         _sign_out_locator = (By.LINK_TEXT, 'Sign out')
         _profile_link_locator = (By.CSS_SELECTOR, '.user-state a')
         _search_locator = (By.ID, 'q')
 
-        @property
-        def is_topics_link_visible(self):
-            return self.is_element_visible(self._topics_link_locator)
-
-        @property
-        def is_docs_link_visible(self):
-            return self.is_element_visible(self._docs_link_locator)
-
-        @property
-        def is_demos_link_visible(self):
-            return self.is_element_visible(self._demos_link_locator)
-
-        @property
-        def is_learning_link_visible(self):
-            return self.is_element_visible(self._learning_link_locator)
-
-        @property
-        def is_community_link_visible(self):
-            return self.is_element_visible(self._community_link_locator)
+        main_nav_links_list = [
+            {
+                'locator': (By.CSS_SELECTOR, '#nav-main-topics a'),
+                'url_suffix': '#nav-sub-topics',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-main-docs a'),
+                'url_suffix': '/docs',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-main-demos a'),
+                'url_suffix': '/demos/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-main-learning a'),
+                'url_suffix': '/learn',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-main-community a'),
+                'url_suffix': '#nav-sub-community',
+            }
+        ]
 
         def click_sign_in(self):
             self.selenium.find_element(*self._sign_in_locator).click()
@@ -89,37 +87,32 @@ class BasePage(Page):
             return self.BrowserIDInfoRegion(self.testsetup)
 
         class BrowserIDInfoRegion(Page):
-    
+
             _sign_in_locator = (By.CSS_SELECTOR, '.browserid-info .browserid-signin')
-    
+
             def click_sign_in(self):
                 self.selenium.find_element(*self._sign_in_locator).click()
 
-
     class FooterRegion(Page):
 
+        footer_links_list = [
+            {
+                'locator': (By.CSS_SELECTOR, '#footbar > div.wrap > p > a'),
+                'url_suffix': 'mdn.uservoice.com/forums/51389-mdn-website-feedback-http-developer-mozilla-org',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(1)'),
+                'url_suffix': '/docs/Project:Copyrights',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(2)'),
+                'url_suffix': '/docs/Project:About',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(3)'),
+                'url_suffix': '/privacy',
+            }
+        ]
+
         _logo_locator = (By.CSS_SELECTOR, '#legal > img')
-        _feedback_link_locator = (By.CSS_SELECTOR, '#footbar > div.wrap > p > a')
-        _licenses_link_locator = (By.CSS_SELECTOR, '#legal > p > a:nth-child(1)')
-        _about_link_locator = (By.CSS_SELECTOR, '#legal > p > a:nth-child(2)')
-        _privacy_link_locator = (By.CSS_SELECTOR, '#legal > p > a:nth-child(3)')
 
         @property
         def is_logo_visible(self):
             return self.is_element_visible(self._logo_locator)
-
-        @property
-        def is_feedback_link_visible(self):
-            return self.is_element_visible(self._feedback_link_locator)
-
-        @property
-        def is_licenses_link_visible(self):
-            return self.is_element_visible(self._licenses_link_locator)
-
-        @property
-        def is_about_link_visible(self):
-            return self.is_element_visible(self._about_link_locator)
-
-        @property
-        def is_privacy_link_visible(self):
-            return self.is_element_visible(self._privacy_link_locator)
