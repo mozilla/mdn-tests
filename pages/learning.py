@@ -18,7 +18,7 @@ class LearningPage(BasePage):
     _css_locator = (By.CSS_SELECTOR, '#sub-css h2')
     _javascript_locator = (By.CSS_SELECTOR, '#sub-js h2')
     _blackboard_locator = (By.ID, 'blackboard')
-    _p2p_image_locator = (By.CSS_SELECTOR, '#learn-p2pu > p > span')
+    _p2p_image_locator = (By.CSS_SELECTOR, '#learn-p2pu > p span')
 
     def go_to_page(self):
         self.selenium.get(self.base_url + '/learn')
