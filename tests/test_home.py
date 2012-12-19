@@ -188,4 +188,10 @@ class TestHome:
             url = home_page.link_destination(link.get('locator'))
             if not home_page.is_valid_link(url):
                 bad_urls.append('%s is not a valid url' % url)
+        # To address https://bugzilla.mozilla.org/show_bug.cgi?id=823208
+        if 'developer-dev' in mozwebqa.base_url:
+            if len(bad_urls) > 0:
+                pytest.xfail("BUG 823208: Footer links on https://developer-dev.allizom.org are 404s")
+            else:
+                Assert.fail("It looks like BUG 823208 has been fixed. Please remove xfail.")
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
