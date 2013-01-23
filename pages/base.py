@@ -215,7 +215,7 @@ class BasePage(Page):
         footer_links_list = [
             {
                 'locator': (By.CSS_SELECTOR, '#footbar > div.wrap > p > a'),
-                'url_suffix': 'mdn.uservoice.com/forums/51389-mdn-website-feedback-http-developer-mozilla-org',
+                'url_suffix': '/docs/Project:Feedback',
             }, {
                 'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(1)'),
                 'url_suffix': '/docs/Project:Copyrights',
