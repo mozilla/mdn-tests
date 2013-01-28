@@ -22,9 +22,9 @@ global Python installation. If you work on multiple Python projects that might
 end up needing different versions of the same libraries, you might want to
 follow `sudo easy_install pip` with `sudo pip install virtualenv`, and then
 create and activate a [virtualenv](http://www.virtualenv.org) (e.g. `virtualenv
-caseconductor-tests-env; source case-conductor-tests-env/bin/activate`) to
+case-conductor-tests-env; source case-conductor-tests-env/bin/activate`) to
 create a clean "virtual environment" for just this project. Then you can `pip
-install -r requiremenst/mozwebqa.txt` in your virtual environment without
+install -r requirements.txt` in your virtual environment without
 needing to use `sudo`.
 
 If you don't mind installing globally, just run
