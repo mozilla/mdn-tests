@@ -15,17 +15,16 @@ Running Tests
 ### Python
 Before you will be able to run these tests you will need to have Python 2.6 installed.
 
+####Virtualenv and Virtualenvwrapper (Optional/Intermediate level)
+While most of us have had some experience using virtual machines, [virtualenv][venv] is something else entirely.  It's used to keep libraries that you install from clashing and messing up your local environment.  After installing virtualenv, installing [virtualenvwrapper][wrapper] will give you some nice commands to use with virtualenvwrapper.
+
+[venv]: http://pypi.python.org/pypi/virtualenv
+[wrapper]: http://www.doughellmann.com/projects/virtualenvwrapper/
+
 __note__
 
-The below instructions will install the required Python libraries into your
-global Python installation. If you work on multiple Python projects that might
-end up needing different versions of the same libraries, you might want to
-follow `sudo easy_install pip` with `sudo pip install virtualenv`, and then
-create and activate a [virtualenv](http://www.virtualenv.org) (e.g. `virtualenv
-caseconductor-tests-env; source case-conductor-tests-env/bin/activate`) to
-create a clean "virtual environment" for just this project. Then you can `pip
-install -r requiremenst/mozwebqa.txt` in your virtual environment without
-needing to use `sudo`.
+If you do not use virtualenv, you can follow the instructions below to install
+the required Python libraries into your global Python installation.
 
 If you don't mind installing globally, just run
 
