@@ -66,10 +66,6 @@ An example of running all non-destructive tests:
 
     py.test --driver=firefox --credentials=/path/to/credentials/credentials.yaml
 
-__note__
-
-    If you want to run ALL the tests, you can include '--destructive .' This will run every test, including those that destroy data. This option should NEVER be used in production.
-
 An example of running all of the tests in one file:
 
     py.test --driver=firefox --credentials=/path/to/credentials/credentials.yaml tests/test_sign_in.py
@@ -78,7 +74,9 @@ An example of running one test in a file:
 
     py.test --driver=firefox --credentials=/path/to/credentials/credentials.yaml tests/test_sign_in.py -k test_sign_out
 
-For more command line options see https://github.com/davehunt/pytest-mozwebqa
+For more command line options see https://github.com/davehunt/pytest-mozwebqa or run
+
+    py.test --help
 
 Writing Tests
 -------------
