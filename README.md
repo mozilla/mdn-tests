@@ -53,9 +53,17 @@ You will need persona credentials for the site being tested. Get the URL being t
 
 For all tests to pass, you will need to edit your MDN profile and ensure all fields are filled out.
 
-To run tests locally it's a simple case of calling py.test from the root directory.
+An example of running all tests without a Selenium Server:
 
-    py.test --driver=firefox
+    py.test --driver=firefox --credentials=/path/to/credentials/credentials.yaml --destructive .
+
+An example of running all of the tests in one file:
+
+    py.test --driver=firefox --credentials=/path/to/credentials/credentials.yaml tests/test_sign_in.py
+
+An example of running one test in a file:
+
+    py.test --driver=firefox --credentials=/path/to/credentials/credentials.yaml tests/test_sign_in.py -k test_sign_out
 
 For more command line options see https://github.com/davehunt/pytest-mozwebqa
 
