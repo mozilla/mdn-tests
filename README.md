@@ -12,6 +12,11 @@ https://github.com/mozilla/mdn-tests/contributors
 Running Tests
 -------------
 
+### Submodules
+Before you start, be sure to get the git submodules:
+
+    git submodule update --init
+
 ### Python
 Before you will be able to run these tests you will need to have Python 2.6 installed.
 
@@ -43,6 +48,10 @@ If you are running on Ubuntu/Debian you will need to first do
 to install the required Python libraries.
 
 ### Running tests locally
+
+You will need persona credentials for the site being tested. Get the URL being tested from mozwebqa.cfg in the project root, sign up for that site, and enter the credentials in a yaml file (see credentials.yaml in the project root). To avoid version control conflicts, you may want to store your credentials files separately from your source code.
+
+For all tests to pass, you will need to edit your MDN profile and ensure all fields are filled out.
 
 To run tests locally it's a simple case of calling py.test from the root directory.
 
