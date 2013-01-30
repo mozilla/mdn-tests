@@ -9,13 +9,22 @@ The following have all contributed to mdn-tests:
 
 https://github.com/mozilla/mdn-tests/contributors
 
-Running Tests
+Getting the Code
 -------------
 
+If you don't already have one, sign up for a GitHub account.
+
+If you visit the project page while signed into your GitHub account, you will see an option to Fork the repository. If you think you might want to contribute to the project, create a Fork so that you have a copy you can experiment with.
+
+On your computer, clone the repository (your own if you forked, or the mozilla one if not). The URL for cloning is close to the top of the GitHub project page.
+
 ### Submodules
-Before you start, be sure to get the git submodules:
+Be sure to retrieve the git submodules:
 
     git submodule update --init
+
+Running Tests
+-------------
 
 ### Python
 Before you will be able to run these tests you will need to have Python 2.6 installed.
@@ -53,9 +62,13 @@ You will need persona credentials for the site being tested. Get the URL being t
 
 For all tests to pass, you will need to edit your MDN profile and ensure all fields are filled out.
 
-An example of running all tests without a Selenium Server:
+An example of running all non-destructive tests:
 
-    py.test --driver=firefox --credentials=/path/to/credentials/credentials.yaml --destructive .
+    py.test --driver=firefox --credentials=/path/to/credentials/credentials.yaml
+
+__note__
+
+    If you want to run ALL the tests, you can include '--destructive .' This will run every test, including those that destroy data. This option should NEVER be used in production.
 
 An example of running all of the tests in one file:
 
