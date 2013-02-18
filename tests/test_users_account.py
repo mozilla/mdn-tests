@@ -8,6 +8,7 @@ from pages.home import HomePage
 
 from unittestzero import Assert
 import pytest
+from persona_test_user import PersonaTestUser
 
 
 class TestSignIn:
@@ -16,13 +17,25 @@ class TestSignIn:
     def test_sign_in(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
-        home_page.sign_in()
+        home_page.sign_in(user="default")
         Assert.true(home_page.is_signed_in)
 
     @pytest.mark.nondestructive
     def test_sign_out(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
-        home_page.sign_in()
+        home_page.sign_in(user="default")
         home_page.header.click_sign_out()
         Assert.false(home_page.is_signed_in)
+
+    def test_create_new_account(self, mozwebqa):
+        user = PersonaTestUser().create_user()
+        _username = user['email'].split('@')[0]
+
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        home_page.sign_in(user)
+        Assert.true(home_page.is_the_current_page)
+
+        home_page.enter_new_user_profile(_username)
+        Assert.equal(home_page.display_name, _username)

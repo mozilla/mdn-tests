@@ -6,24 +6,44 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from mocks.mock_user import MockUser
+from persona_test_user import PersonaTestUser
 
 from page import Page
 
 
 class BasePage(Page):
 
+    _sign_in_locator = (By.CSS_SELECTOR, '.browserid')
+    _browserid_info_submenu_locator = (By.CSS_SELECTOR, '.browserid-info.sub-menu')
+    _submenu_sign_in_locator = (By.CSS_SELECTOR, '.browserid-info .browserid-signin')
+    _create_new_profile_button = (By.CSS_SELECTOR, '#create_user .submit > button')
+    _username_input_field_locator = (By.ID, 'id_for_username')
+
     def link_destination(self, locator):
         link = self.selenium.find_element(*locator)
         return link.get_attribute('href')
 
-    def sign_in(self, user='default'):
-        credentials = self.testsetup.credentials[user]
-        self.header.click_sign_in()
-        self.header.browser_id_info.click_sign_in()
-        from browserid import BrowserID
-        browser_id = BrowserID(self.selenium, self.timeout)
-        browser_id.sign_in(credentials['email'], credentials['password'])
-        WebDriverWait(self.selenium, self.timeout).until(lambda s: s.find_element(*self.header._sign_out_locator))
+    def sign_in(self, user=None):
+
+        credentials = isinstance(user, MockUser) and user or self.testsetup.credentials.get(user, PersonaTestUser().create_user())
+
+        bid_login = self.click_sign_in_register(expect='new')
+        bid_login.sign_in(credentials['email'], credentials['password'])
+
+        WebDriverWait(self.selenium, self.timeout).until(lambda s: self.is_signed_in)
+
+    def click_sign_in_register(self, expect='new'):
+
+        self.selenium.find_element(*self._sign_in_locator).click()
+        WebDriverWait(self.selenium, self.timeout).until(lambda s: self.is_element_visible(self._browserid_info_submenu_locator))
+        self.selenium.find_element(*self._submenu_sign_in_locator).click()
+        from browserid.pages.sign_in import SignIn
+        return SignIn(self.selenium, self.timeout, expect=expect)
+
+    def enter_new_user_profile(self, _username):
+        self.selenium.find_element(*self._username_input_field_locator).send_keys(_username)
+        self.selenium.find_element(*self._create_new_profile_button).click()
 
     @property
     def is_signed_in(self):
