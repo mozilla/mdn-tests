@@ -66,6 +66,7 @@ class BasePage(Page):
         _topics_menu_locator = (By.CSS_SELECTOR, '#nav-main-topics a')
         _docs_menu_locator = (By.CSS_SELECTOR, '#nav-main-docs a')
         _community_menu_locator = (By.CSS_SELECTOR, '#nav-main-community a')
+        _username_locator = (By.CSS_SELECTOR, '.user-state > li:nth-child(1) > a')
 
         main_nav_links_list = [
             {
@@ -218,6 +219,10 @@ class BasePage(Page):
         @property
         def is_search_present(self):
             return self.is_element_present(self._search_locator)
+
+        @property
+        def wait_for_username_visible(self):
+            WebDriverWait(self.selenium, self.timeout).until(lambda s: s.find_element(*self._username_locator).is_displayed())
 
         @property
         def browser_id_info(self):

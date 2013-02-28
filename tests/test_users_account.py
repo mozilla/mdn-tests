@@ -18,6 +18,7 @@ class TestSignIn:
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
         home_page.sign_in(user="default")
+        home_page.header.wait_for_username_visible
         Assert.true(home_page.is_signed_in)
 
     @pytest.mark.nondestructive
@@ -25,6 +26,7 @@ class TestSignIn:
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
         home_page.sign_in(user="default")
+        home_page.header.wait_for_username_visible
         home_page.header.click_sign_out()
         Assert.false(home_page.is_signed_in)
 
