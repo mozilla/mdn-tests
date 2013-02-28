@@ -31,8 +31,6 @@ class BasePage(Page):
         bid_login = self.click_sign_in_register(expect='new')
         bid_login.sign_in(credentials['email'], credentials['password'])
 
-        WebDriverWait(self.selenium, self.timeout).until(lambda s: self.is_signed_in)
-
     def click_sign_in_register(self, expect='new'):
 
         self.selenium.find_element(*self._sign_in_locator).click()
@@ -44,6 +42,8 @@ class BasePage(Page):
     def enter_new_user_profile(self, _username):
         self.selenium.find_element(*self._username_input_field_locator).send_keys(_username)
         self.selenium.find_element(*self._create_new_profile_button).click()
+
+        WebDriverWait(self.selenium, self.timeout).until(lambda s: self.is_signed_in)
 
     @property
     def is_signed_in(self):
