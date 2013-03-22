@@ -224,6 +224,9 @@ class BasePage(Page):
                 'url_suffix': '/docs/Project:About',
             }, {
                 'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(3)'),
+                'url_suffix': 'https://github.com/mozilla/kuma/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(4)'),
                 'url_suffix': '/privacy',
             }
         ]
