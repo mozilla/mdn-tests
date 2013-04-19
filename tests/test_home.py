@@ -179,7 +179,7 @@ class TestHome:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.xfail(reason="Bug 863724 - [prod] About MDN link")
+    @pytest.mark.xfail(reason="Bug 863449 - https://developer.mozilla.org/en-US/docs/Project%3AHow_to_Help link is broken")
     @pytest.mark.nondestructive
     def test_footer_link_urls_are_valid(self, mozwebqa):
         home_page = HomePage(mozwebqa)
