@@ -45,7 +45,7 @@ class BasePage(Page):
         _search_locator = (By.ID, 'q')
         _docs_menu_locator = (By.CSS_SELECTOR, '#nav-main-docs a')
         _make_apps_menu_locator = (By.CSS_SELECTOR, '#nav-main-apps a')
-        _community_menu_locator = (By.CSS_SELECTOR, '#nav-main-community a')
+        _get_involved_menu_locator = (By.CSS_SELECTOR, '#nav-main-community a')
         _build_use_firefox_menu_locator = (By.CSS_SELECTOR, '#nav-main-firefox a')
         _demos_menu_locator = (By.CSS_SELECTOR, '#nav-main-demos a')
 
@@ -63,7 +63,7 @@ class BasePage(Page):
                 'locator': _demos_menu_locator,
                 'url_suffix': '/demos/',
             }, {
-                'locator': _community_menu_locator,
+                'locator': _get_involved_menu_locator,
                 'url_suffix': '#nav-sub-community',
             }
         ]
@@ -127,7 +127,7 @@ class BasePage(Page):
             }
         ]
 
-        community_links_list = [
+        get_involved_links_list = [
             {
                 'locator': (By.CSS_SELECTOR, '#nav-sub-community li:nth-child(1) a'),
                 'url_suffix': '/Join_the_community',
@@ -149,8 +149,8 @@ class BasePage(Page):
         def open_docs_menu(self):
             self.selenium.find_element(*self._docs_menu_locator).click()
 
-        def open_community_menu(self):
-            self.selenium.find_element(*self._community_menu_locator).click()
+        def open_get_involved_menu(self):
+            self.selenium.find_element(*self._get_involved_menu_locator).click()
 
         def click_sign_in(self):
             self.selenium.find_element(*self._sign_in_locator).click()
