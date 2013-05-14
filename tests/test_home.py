@@ -13,22 +13,178 @@ import pytest
 class TestHome:
 
     @pytest.mark.nondestructive
-    def test_header_links(self, mozwebqa):
-        home_pg = HomePage(mozwebqa)
-        home_pg.go_to_home_page()
-        Assert.true(home_pg.header.is_topics_link_visible)
-        Assert.true(home_pg.header.is_docs_link_visible)
-        Assert.true(home_pg.header.is_demos_link_visible)
-        Assert.true(home_pg.header.is_learning_link_visible)
-        Assert.true(home_pg.header.is_community_link_visible)
-        Assert.true(home_pg.header.is_search_present)
+    def test_main_nav_links_are_visible(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        bad_links = []
+        for link in home_page.header.main_nav_links_list:
+            if not home_page.is_element_visible(link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        Assert.true(home_page.header.is_search_present)
 
     @pytest.mark.nondestructive
-    def test_footer_links(self, mozwebqa):
-        home_pg = HomePage(mozwebqa)
-        home_pg.go_to_home_page()
-        Assert.true(home_pg.footer.is_logo_visible)
-        Assert.true(home_pg.footer.is_feedback_link_visible)
-        Assert.true(home_pg.footer.is_licenses_link_visible)
-        Assert.true(home_pg.footer.is_about_link_visible)
-        Assert.true(home_pg.footer.is_privacy_link_visible)
+    def test_main_nav_link_destinations_are_correct(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        bad_links = []
+        for link in home_page.header.main_nav_links_list:
+            url = home_page.link_destination(link.get('locator'))
+            if not url.endswith(link.get('url_suffix')):
+                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+
+    @pytest.mark.nondestructive
+    def test_main_nav_link_urls_are_valid(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        bad_urls = []
+        for link in home_page.header.main_nav_links_list:
+            url = home_page.link_destination(link.get('locator'))
+            if not home_page.is_valid_link(url):
+                bad_urls.append('%s is not a valid url' % url)
+        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
+
+    @pytest.mark.nondestructive
+    def test_read_docs_links_are_visible(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        home_page.header.open_read_docs_menu()
+        bad_links = []
+        for link in home_page.header.read_docs_links_list:
+            if not home_page.is_element_visible(link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        Assert.true(home_page.header.is_search_present)
+
+    @pytest.mark.nondestructive
+    def test_build_use_firefox_links_are_correct(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        home_page.header.open_use_firefox_menu()
+        bad_links = []
+        for link in home_page.header.build_use_firefox_links_list:
+            url = home_page.link_destination(link.get('locator'))
+            if not url.endswith(link.get('url_suffix')):
+                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+
+    @pytest.mark.nondestructive
+    def test_build_use_firefox_links_urls_are_valid(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        home_page.header.open_use_firefox_menu()
+        bad_urls = []
+        for link in home_page.header.build_use_firefox_links_list:
+            url = home_page.link_destination(link.get('locator'))
+            if not home_page.is_valid_link(url):
+                bad_urls.append('%s is not a valid url' % url)
+        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
+
+    @pytest.mark.nondestructive
+    def test_read_docs_menu_links_are_visible(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        home_page.header.open_read_docs_menu()
+        bad_links = []
+        for link in home_page.header.read_docs_links_list:
+            if not home_page.is_element_visible(link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        Assert.true(home_page.header.is_search_present)
+
+    @pytest.mark.nondestructive
+    def test_read_docs_menu_link_destinations_are_correct(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        home_page.header.open_read_docs_menu()
+        bad_links = []
+        for link in home_page.header.read_docs_links_list:
+            url = home_page.link_destination(link.get('locator'))
+            if not url.endswith(link.get('url_suffix')):
+                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+
+    @pytest.mark.xfail(reason="BUG 802196: Broken links on staging")
+    # https://bugzilla.mozilla.org/show_bug.cgi?id=802196
+    @pytest.mark.nondestructive
+    def test_read_docs_menu_link_urls_are_valid(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        home_page.header.open_read_docs_menu()
+        bad_urls = []
+        for link in home_page.header.read_docs_links_list:
+            url = home_page.link_destination(link.get('locator'))
+            if not home_page.is_valid_link(url):
+                bad_urls.append('%s is not a valid url' % url)
+        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
+
+    @pytest.mark.nondestructive
+    def test_get_involved_links_are_visible(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        home_page.header.open_get_involved_menu()
+        bad_links = []
+        for link in home_page.header.get_involved_links_list:
+            if not home_page.is_element_visible(link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        Assert.true(home_page.header.is_search_present)
+
+    @pytest.mark.nondestructive
+    def test_get_involved_link_destinations_are_correct(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        home_page.header.open_get_involved_menu()
+        bad_links = []
+        for link in home_page.header.get_involved_links_list:
+            url = home_page.link_destination(link.get('locator'))
+            if not url.endswith(link.get('url_suffix')):
+                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+
+    @pytest.mark.nondestructive
+    def test_get_involved_link_urls_are_valid(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        home_page.header.open_get_involved_menu()
+        bad_urls = []
+        for link in home_page.header.get_involved_links_list:
+            url = home_page.link_destination(link.get('locator'))
+            if not home_page.is_valid_link(url):
+                bad_urls.append('%s is not a valid url' % url)
+        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
+
+    @pytest.mark.nondestructive
+    def test_footer_links_are_visible(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        bad_links = []
+        for link in home_page.footer.footer_links_list:
+            if not home_page.is_element_visible(link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        Assert.true(home_page.header.is_search_present)
+        Assert.true(home_page.footer.is_logo_visible)
+
+    @pytest.mark.nondestructive
+    def test_footer_link_destinations_are_correct(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        bad_links = []
+        for link in home_page.footer.footer_links_list:
+            url = home_page.link_destination(link.get('locator'))
+            if not url.endswith(link.get('url_suffix')):
+                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+
+    @pytest.mark.nondestructive
+    def test_footer_link_urls_are_valid(self, mozwebqa):
+        home_page = HomePage(mozwebqa)
+        home_page.go_to_page()
+        bad_urls = []
+        for link in home_page.footer.footer_links_list:
+            url = home_page.link_destination(link.get('locator'))
+            if not home_page.is_valid_link(url):
+                bad_urls.append('%s is not a valid url' % url)
+        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))

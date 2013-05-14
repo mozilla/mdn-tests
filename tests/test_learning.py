@@ -13,33 +13,35 @@ import pytest
 class TestLearning:
 
     @pytest.mark.nondestructive
-    def test_footer_links_visible(self, mozwebqa):
-        learning_pg = LearningPage(mozwebqa)
-        learning_pg.go_to_learning_page()
-        Assert.true(learning_pg.footer.is_logo_visible)
-        Assert.true(learning_pg.footer.is_feedback_link_visible)
-        Assert.true(learning_pg.footer.is_licenses_link_visible)
-        Assert.true(learning_pg.footer.is_about_link_visible)
-        Assert.true(learning_pg.footer.is_privacy_link_visible)
+    def test_main_nav_links_are_visible(self, mozwebqa):
+        learning_page = LearningPage(mozwebqa)
+        learning_page.go_to_page()
+        bad_links = []
+        for link in learning_page.header.main_nav_links_list:
+            if not learning_page.is_element_visible(link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        Assert.true(learning_page.header.is_search_present)
 
     @pytest.mark.nondestructive
-    def test_header_links_visible(self, mozwebqa):
-        learning_pg = LearningPage(mozwebqa)
-        learning_pg.go_to_learning_page()
-        Assert.true(learning_pg.header.is_topics_link_visible)
-        Assert.true(learning_pg.header.is_docs_link_visible)
-        Assert.true(learning_pg.header.is_demos_link_visible)
-        Assert.true(learning_pg.header.is_learning_link_visible)
-        Assert.true(learning_pg.header.is_community_link_visible)
-        Assert.true(learning_pg.header.is_search_present)
+    def test_footer_links_are_visible(self, mozwebqa):
+        learning_page = LearningPage(mozwebqa)
+        learning_page.go_to_page()
+        bad_links = []
+        for link in learning_page.footer.footer_links_list:
+            if not learning_page.is_element_visible(link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        Assert.true(learning_page.header.is_search_present)
+        Assert.true(learning_page.footer.is_logo_visible)
 
     @pytest.mark.nondestructive
     def test_page_elements_are_visible(self, mozwebqa):
-        learning_pg = LearningPage(mozwebqa)
-        learning_pg.go_to_learning_page()
-        Assert.true(learning_pg.is_page_title_visible)
-        Assert.true(learning_pg.is_html_locator_visible)
-        Assert.true(learning_pg.is_css_locator_visible)
-        Assert.true(learning_pg.is_javascript_link_visible)
-        Assert.true(learning_pg.is_blackboard_visible)
-        Assert.true(learning_pg.is_p2p_image_visible)
+        learning_page = LearningPage(mozwebqa)
+        learning_page.go_to_page()
+        Assert.true(learning_page.is_page_title_visible)
+        Assert.true(learning_page.is_html_locator_visible)
+        Assert.true(learning_page.is_css_locator_visible)
+        Assert.true(learning_page.is_javascript_link_visible)
+        Assert.true(learning_page.is_blackboard_visible)
+        Assert.true(learning_page.is_p2p_image_visible)

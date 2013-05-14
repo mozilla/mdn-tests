@@ -12,6 +12,10 @@ from page import Page
 
 class BasePage(Page):
 
+    def link_destination(self, locator):
+        link = self.selenium.find_element(*locator)
+        return link.get_attribute('href')
+
     def sign_in(self, user='default'):
         credentials = self.testsetup.credentials[user]
         self.header.click_sign_in()
@@ -35,35 +39,118 @@ class BasePage(Page):
 
     class HeaderRegion(Page):
 
-        _topics_link_locator = (By.CSS_SELECTOR, '#nav-main-topics a')
-        _docs_link_locator = (By.CSS_SELECTOR, '#nav-main-docs a')
-        _demos_link_locator = (By.CSS_SELECTOR, '#nav-main-demos a')
-        _learning_link_locator = (By.CSS_SELECTOR, '#nav-main-learning a')
-        _community_link_locator = (By.CSS_SELECTOR, '#nav-main-community a')
         _sign_in_locator = (By.CSS_SELECTOR, '#masthead .browserid-signin')
         _sign_out_locator = (By.LINK_TEXT, 'Sign out')
         _profile_link_locator = (By.CSS_SELECTOR, '.user-state a')
         _search_locator = (By.ID, 'q')
+        _read_docs_locator = (By.CSS_SELECTOR, '#nav-main-docs a')
+        _make_apps_locator = (By.CSS_SELECTOR, '#nav-main-apps a')
+        _use_firefox_locator = (By.CSS_SELECTOR, '#nav-main-firefox a')
+        _submit_demos_locator = (By.CSS_SELECTOR, '#nav-main-demos a')
+        _get_involved_locator = (By.CSS_SELECTOR, '#nav-main-community a')
 
-        @property
-        def is_topics_link_visible(self):
-            return self.is_element_visible(self._topics_link_locator)
+        main_nav_links_list = [
+            {
+                'locator': _read_docs_locator,
+                'url_suffix': '#nav-sub-docs',
+            }, {
+                'locator': _make_apps_locator,
+                'url_suffix': '/developers/',
+            }, {
+                'locator': _use_firefox_locator,
+                'url_suffix': '#nav-sub-firefox',
+            }, {
+                'locator': _submit_demos_locator,
+                'url_suffix': '/demos/?menu',
+            }, {
+                'locator': _get_involved_locator,
+                'url_suffix': '#nav-sub-community',
+            }
+        ]
 
-        @property
-        def is_docs_link_visible(self):
-            return self.is_element_visible(self._docs_link_locator)
+        build_use_firefox_links_list = [
+            {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-firefox > li:nth-of-type(1) > a'),
+                'url_suffix': '/Firefox_OS?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-firefox > li:nth-of-type(2) > a'),
+                'url_suffix': '/Firefox?menu'
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-firefox > li:nth-of-type(3) > a'),
+                'url_suffix': '/Mobile?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-firefox > li:nth-of-type(4) > a'),
+                'url_suffix': '/Add-ons?menu',
+            }
+        ]
 
-        @property
-        def is_demos_link_visible(self):
-            return self.is_element_visible(self._demos_link_locator)
+        get_involved_links_list = [
+            {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-community > li:nth-of-type(1) > a'),
+                'url_suffix': '/Join_the_community?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-community > li:nth-of-type(2) > a'),
+                'url_suffix': '/Contributing?menu'
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-community > li:nth-of-type(3) > a'),
+                'url_suffix': '/events?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-community> li:nth-of-type(4) > a'),
+                'url_suffix': '/Follow_what_s_happening?menu',
+            }
+        ]
 
-        @property
-        def is_learning_link_visible(self):
-            return self.is_element_visible(self._learning_link_locator)
+        read_docs_links_list = [
+            {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(1) > a'),
+                'url_suffix': '/HTML?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(2) > a'),
+                'url_suffix': '/CSS?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(3) > a'),
+                'url_suffix': '/JavaScript?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(4) > a'),
+                'url_suffix': '/Graphics?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(5) > a'),
+                'url_suffix': '/API?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(6) > a'),
+                'url_suffix': '/Apps?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(7) > a'),
+                'url_suffix': '/tools?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul >  li:nth-of-type(8) > a'),
+                'url_suffix': '/MathML?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(1) > a'),
+                'url_suffix': '/Tutorials?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(2) > a'),
+                'url_suffix': '/Reference?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(3) > a'),
+                'url_suffix': '/Guide?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(4) > a'),
+                'url_suffix': '/demos/?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(5) > a'),
+                'url_suffix': '/docs?menu',
+            }
+        ]
 
-        @property
-        def is_community_link_visible(self):
-            return self.is_element_visible(self._community_link_locator)
+        def open_read_docs_menu(self):
+            self.selenium.find_element(*self._read_docs_locator).click()
+
+        def open_use_firefox_menu(self):
+            self.selenium.find_element(*self._use_firefox_locator).click()
+
+        def open_get_involved_menu(self):
+            self.selenium.find_element(*self._get_involved_locator).click()
 
         def click_sign_in(self):
             self.selenium.find_element(*self._sign_in_locator).click()
@@ -89,37 +176,35 @@ class BasePage(Page):
             return self.BrowserIDInfoRegion(self.testsetup)
 
         class BrowserIDInfoRegion(Page):
-    
+
             _sign_in_locator = (By.CSS_SELECTOR, '.browserid-info .browserid-signin')
-    
+
             def click_sign_in(self):
                 self.selenium.find_element(*self._sign_in_locator).click()
 
-
     class FooterRegion(Page):
 
+        footer_links_list = [
+            {
+                'locator': (By.CSS_SELECTOR, '#footbar > div.wrap > p > a'),
+                'url_suffix': '/docs/Project:Feedback',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(1)'),
+                'url_suffix': '/docs/Project:Copyrights',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(2)'),
+                'url_suffix': '/docs/Project:About',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(3)'),
+                'url_suffix': 'https://github.com/mozilla/kuma/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(4)'),
+                'url_suffix': '/privacy',
+            }
+        ]
+
         _logo_locator = (By.CSS_SELECTOR, '#legal > img')
-        _feedback_link_locator = (By.CSS_SELECTOR, '#footbar > div.wrap > p > a')
-        _licenses_link_locator = (By.CSS_SELECTOR, '#legal > p > a:nth-child(1)')
-        _about_link_locator = (By.CSS_SELECTOR, '#legal > p > a:nth-child(2)')
-        _privacy_link_locator = (By.CSS_SELECTOR, '#legal > p > a:nth-child(3)')
 
         @property
         def is_logo_visible(self):
             return self.is_element_visible(self._logo_locator)
-
-        @property
-        def is_feedback_link_visible(self):
-            return self.is_element_visible(self._feedback_link_locator)
-
-        @property
-        def is_licenses_link_visible(self):
-            return self.is_element_visible(self._licenses_link_locator)
-
-        @property
-        def is_about_link_visible(self):
-            return self.is_element_visible(self._about_link_locator)
-
-        @property
-        def is_privacy_link_visible(self):
-            return self.is_element_visible(self._privacy_link_locator)

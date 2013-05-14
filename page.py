@@ -38,5 +38,19 @@ class Page(object):
     def is_element_visible(self, locator):
         try:
             return self.selenium.find_element(*locator).is_displayed()
-        except NoSuchElementException, ElementNotVisibleException:
+        except (NoSuchElementException, ElementNotVisibleException):
             return False
+
+    def get_response_code(self, url):
+        # return the response status
+        import urllib2
+        try:
+            urllib2.urlopen(url)
+            return 200
+        except urllib2.HTTPError, e:
+            return e.code
+
+    def is_valid_link(self, url):
+        if self.get_response_code(url) == 200:
+            return True
+        return False

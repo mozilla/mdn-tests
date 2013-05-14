@@ -9,23 +9,36 @@ The following have all contributed to mdn-tests:
 
 https://github.com/mozilla/mdn-tests/contributors
 
+Getting the Code
+-------------
+
+If you don't already have one, sign up for a GitHub account.
+
+If you visit the project page while signed into your GitHub account, you will see an option to Fork the repository. If you think you might want to contribute to the project, create a Fork so that you have a copy you can experiment with.
+
+On your computer, clone the repository (your own if you forked, or the mozilla one if not). The URL for cloning is close to the top of the GitHub project page.
+
+### Submodules
+Be sure to retrieve the git submodules:
+
+    git submodule update --init
+
 Running Tests
 -------------
 
 ### Python
 Before you will be able to run these tests you will need to have Python 2.6 installed.
 
+####Virtualenv and Virtualenvwrapper (Optional/Intermediate level)
+While most of us have had some experience using virtual machines, [virtualenv][venv] is something else entirely.  It's used to keep libraries that you install from clashing and messing up your local environment.  After installing virtualenv, installing [virtualenvwrapper][wrapper] will give you some nice commands to use with virtualenvwrapper.
+
+[venv]: http://pypi.python.org/pypi/virtualenv
+[wrapper]: http://www.doughellmann.com/projects/virtualenvwrapper/
+
 __note__
 
-The below instructions will install the required Python libraries into your
-global Python installation. If you work on multiple Python projects that might
-end up needing different versions of the same libraries, you might want to
-follow `sudo easy_install pip` with `sudo pip install virtualenv`, and then
-create and activate a [virtualenv](http://www.virtualenv.org) (e.g. `virtualenv
-caseconductor-tests-env; source case-conductor-tests-env/bin/activate`) to
-create a clean "virtual environment" for just this project. Then you can `pip
-install -r requiremenst/mozwebqa.txt` in your virtual environment without
-needing to use `sudo`.
+If you do not use virtualenv, you can follow the instructions below to install
+the required Python libraries into your global Python installation.
 
 If you don't mind installing globally, just run
 
@@ -45,11 +58,25 @@ to install the required Python libraries.
 
 ### Running tests locally
 
-To run tests locally it's a simple case of calling py.test from the root directory.
+You will need persona credentials for the site being tested. Get the URL being tested from mozwebqa.cfg in the project root, sign up for that site, and enter the credentials in a yaml file (see credentials.yaml in the project root). To avoid version control conflicts, you may want to store your credentials files separately from your source code.
 
-    py.test --driver=firefox
+For all tests to pass, you will need to edit your MDN profile and ensure all fields are filled out.
 
-For more command line options see https://github.com/davehunt/pytest-mozwebqa
+An example of running all non-destructive tests:
+
+    py.test --driver=firefox --credentials=/path/to/credentials/credentials.yaml
+
+An example of running all of the tests in one file:
+
+    py.test --driver=firefox --credentials=/path/to/credentials/credentials.yaml tests/test_sign_in.py
+
+An example of running one test in a file:
+
+    py.test --driver=firefox --credentials=/path/to/credentials/credentials.yaml tests/test_sign_in.py -k test_sign_out
+
+For more command line options see https://github.com/davehunt/pytest-mozwebqa or run
+
+    py.test --help
 
 Writing Tests
 -------------
