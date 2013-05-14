@@ -43,142 +43,114 @@ class BasePage(Page):
         _sign_out_locator = (By.LINK_TEXT, 'Sign out')
         _profile_link_locator = (By.CSS_SELECTOR, '.user-state a')
         _search_locator = (By.ID, 'q')
-        _topics_menu_locator = (By.CSS_SELECTOR, '#nav-main-topics a')
-        _docs_menu_locator = (By.CSS_SELECTOR, '#nav-main-docs a')
-        _community_menu_locator = (By.CSS_SELECTOR, '#nav-main-community a')
+        _read_docs_locator = (By.CSS_SELECTOR, '#nav-main-docs a')
+        _make_apps_locator = (By.CSS_SELECTOR, '#nav-main-apps a')
+        _use_firefox_locator = (By.CSS_SELECTOR, '#nav-main-firefox a')
+        _submit_demos_locator = (By.CSS_SELECTOR, '#nav-main-demos a')
+        _get_involved_locator = (By.CSS_SELECTOR, '#nav-main-community a')
 
         main_nav_links_list = [
             {
-                'locator': _topics_menu_locator,
-                'url_suffix': '#nav-sub-topics',
+                'locator': _read_docs_locator,
+                'url_suffix': '#nav-sub-docs',
             }, {
-                'locator': _docs_menu_locator,
-                'url_suffix': '/docs',
+                'locator': _make_apps_locator,
+                'url_suffix': '/developers/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-main-demos a'),
-                'url_suffix': '/demos/',
+                'locator': _use_firefox_locator,
+                'url_suffix': '#nav-sub-firefox',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-main-learning a'),
-                'url_suffix': '/learn',
+                'locator': _submit_demos_locator,
+                'url_suffix': '/demos/?menu',
             }, {
-                'locator': _community_menu_locator,
+                'locator': _get_involved_locator,
                 'url_suffix': '#nav-sub-community',
             }
         ]
 
-        topics_links_list = [
+        build_use_firefox_links_list = [
             {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-web a'),
-                'url_suffix': '/web',
+                'locator': (By.CSS_SELECTOR, '#nav-sub-firefox > li:nth-of-type(1) > a'),
+                'url_suffix': '/Firefox_OS?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-apps a'),
-                'url_suffix': '/apps',
+                'locator': (By.CSS_SELECTOR, '#nav-sub-firefox > li:nth-of-type(2) > a'),
+                'url_suffix': '/Firefox?menu'
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-mobile a'),
-                'url_suffix': '/mobile',
+                'locator': (By.CSS_SELECTOR, '#nav-sub-firefox > li:nth-of-type(3) > a'),
+                'url_suffix': '/Mobile?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-addons a'),
-                'url_suffix': '/addons',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-mozilla a'),
-                'url_suffix': '/mozilla',
+                'locator': (By.CSS_SELECTOR, '#nav-sub-firefox > li:nth-of-type(4) > a'),
+                'url_suffix': '/Add-ons?menu',
             }
         ]
 
-        docs_links_list = [
+        get_involved_links_list = [
             {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(1) ul li:nth-child(1) a'),
-                'url_suffix': '/docs/HTML',
+                'locator': (By.CSS_SELECTOR, '#nav-sub-community > li:nth-of-type(1) > a'),
+                'url_suffix': '/Join_the_community?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(1) ul li:nth-child(2) a'),
-                'url_suffix': '/docs/DOM',
+                'locator': (By.CSS_SELECTOR, '#nav-sub-community > li:nth-of-type(2) > a'),
+                'url_suffix': '/Contributing?menu'
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(1) ul li:nth-child(3) a'),
-                'url_suffix': '/docs/Using_HTML5_audio_and_video_in_Firefox',
+                'locator': (By.CSS_SELECTOR, '#nav-sub-community > li:nth-of-type(3) > a'),
+                'url_suffix': '/events?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(1) ul li:nth-child(4) a'),
-                'url_suffix': '/docs/Using_HTML5_audio_and_video_in_Firefox',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(1) ul li:nth-child(5) a'),
-                'url_suffix': '/docs/SVG',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(1) ul li:nth-child(6) a'),
-                'url_suffix': '/docs/WebGL',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(2) ul li:nth-child(1) a'),
-                'url_suffix': '/docs/HTML/HTML5',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(2) ul li:nth-child(2) a'),
-                'url_suffix': '/docs/WebSockets',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(2) ul li:nth-child(3) a'),
-                'url_suffix': '/docs/HTML/Using_the_application_cache',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(2) ul li:nth-child(4) a'),
-                'url_suffix': '/docs/DOM/Storage',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(2) ul li:nth-child(5) a'),
-                'url_suffix': '/docs/IndexedDB',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(2) ul li:nth-child(6) a'),
-                'url_suffix': '/docs/Using_files_from_web_applications',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(3) ul li:nth-child(1) a'),
-                'url_suffix': '/docs/CSS',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(3) ul li:nth-child(2) a'),
-                'url_suffix': '/docs/CSS/Using_CSS_gradients',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(3) ul li:nth-child(3) a'),
-                'url_suffix': '/docs/CSS/Using_CSS_transforms',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(3) ul li:nth-child(4) a'),
-                'url_suffix': '/docs/CSS/Using_CSS_transitions',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(3) ul li:nth-child(5) a'),
-                'url_suffix': '/docs/CSS/Using_CSS_animations',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(3) ul li:nth-child(6) a'),
-                'url_suffix': '/docs/CSS/Media_queries',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(4) ul li:nth-child(1) a'),
-                'url_suffix': '/docs/JavaScript',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(4) ul li:nth-child(2) a'),
-                'url_suffix': '/docs/AJAX',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(4) ul li:nth-child(3) a'),
-                'url_suffix': '/docs/HTML/Canvas',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(4) ul li:nth-child(4) a'),
-                'url_suffix': '/docs/Using_geolocation',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(4) ul li:nth-child(5) a'),
-                'url_suffix': '/docs/DragDrop/Drag_and_Drop',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs ul li:nth-child(4) ul li:nth-child(6) a'),
-                'url_suffix': '/docs/DOM/Using_web_workers',
+                'locator': (By.CSS_SELECTOR, '#nav-sub-community> li:nth-of-type(4) > a'),
+                'url_suffix': '/Follow_what_s_happening?menu',
             }
         ]
 
-        community_links_list = [
+        read_docs_links_list = [
             {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-community li:nth-child(1) a'),
-                'url_suffix': '/events',
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(1) > a'),
+                'url_suffix': '/HTML?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-community li:nth-child(2) a'),
-                'url_suffix': '/promote',
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(2) > a'),
+                'url_suffix': '/CSS?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(3) > a'),
+                'url_suffix': '/JavaScript?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(4) > a'),
+                'url_suffix': '/Graphics?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(5) > a'),
+                'url_suffix': '/API?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(6) > a'),
+                'url_suffix': '/Apps?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(7) > a'),
+                'url_suffix': '/tools?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul >  li:nth-of-type(8) > a'),
+                'url_suffix': '/MathML?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(1) > a'),
+                'url_suffix': '/Tutorials?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(2) > a'),
+                'url_suffix': '/Reference?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(3) > a'),
+                'url_suffix': '/Guide?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(4) > a'),
+                'url_suffix': '/demos/?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(5) > a'),
+                'url_suffix': '/docs?menu',
             }
         ]
 
-        def open_topics_menu(self):
-            self.selenium.find_element(*self._topics_menu_locator).click()
+        def open_read_docs_menu(self):
+            self.selenium.find_element(*self._read_docs_locator).click()
 
-        def open_docs_menu(self):
-            self.selenium.find_element(*self._docs_menu_locator).click()
+        def open_use_firefox_menu(self):
+            self.selenium.find_element(*self._use_firefox_locator).click()
 
-        def open_community_menu(self):
-            self.selenium.find_element(*self._community_menu_locator).click()
+        def open_get_involved_menu(self):
+            self.selenium.find_element(*self._get_involved_locator).click()
 
         def click_sign_in(self):
             self.selenium.find_element(*self._sign_in_locator).click()
