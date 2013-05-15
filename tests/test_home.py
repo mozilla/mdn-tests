@@ -10,6 +10,7 @@ from unittestzero import Assert
 import pytest
 
 
+@pytest.mark.skipif("config.getvalue('base_url').endswith('allizom.org')")
 class TestHome:
 
     @pytest.mark.nondestructive

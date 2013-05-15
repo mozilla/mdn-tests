@@ -13,6 +13,7 @@ import pytest
 class TestDevDerby:
 
     @pytest.mark.nondestructive
+    @pytest.mark.skipif("config.getvalue('base_url').endswith('allizom.org')")
     def test_main_nav_links_are_visible(self, mozwebqa):
         derby_page = DerbyPage(mozwebqa)
         derby_page.go_to_page()
