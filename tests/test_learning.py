@@ -13,6 +13,7 @@ import pytest
 class TestLearning:
 
     @pytest.mark.nondestructive
+    @pytest.mark.skipif("config.getvalue('base_url').endswith('allizom.org')")
     def test_main_nav_links_are_visible(self, mozwebqa):
         learning_page = LearningPage(mozwebqa)
         learning_page.go_to_page()
