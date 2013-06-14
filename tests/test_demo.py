@@ -13,6 +13,7 @@ import pytest
 class TestDemo:
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason="Bug 882555 - /demos doesn't load -- redirects ad-naseum")
     def test_main_nav_links_are_visible(self, mozwebqa):
         demo_page = DemoPage(mozwebqa)
         demo_page.go_to_page()
@@ -24,6 +25,7 @@ class TestDemo:
         Assert.true(demo_page.header.is_search_present)
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason="Bug 882555 - /demos doesn't load -- redirects ad-naseum")
     def test_footer_links_are_visible(self, mozwebqa):
         demo_page = DemoPage(mozwebqa)
         demo_page.go_to_page()
@@ -36,6 +38,7 @@ class TestDemo:
         Assert.true(demo_page.footer.is_logo_visible)
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason="Bug 882555 - /demos doesn't load -- redirects ad-naseum")
     def test_page_elements_are_visible(self, mozwebqa):
         demo_page = DemoPage(mozwebqa)
         demo_page.go_to_page()
@@ -44,6 +47,7 @@ class TestDemo:
         Assert.true(demo_page.is_rss_link_visible)
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason="Bug 882555 - /demos doesn't load -- redirects ad-naseum")
     def test_demos(self, mozwebqa):
         demo_page = DemoPage(mozwebqa)
         demo_page.go_to_page()
