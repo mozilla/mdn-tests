@@ -4,6 +4,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import re
+
 from pages.demo import DemoPage
 
 from unittestzero import Assert
@@ -13,6 +15,7 @@ import pytest
 class TestDemo:
 
     @pytest.mark.nondestructive
+    @pytest.mark.skipif("config.getvalue('base_url').endswith('allizom.org')")
     def test_main_nav_links_are_visible(self, mozwebqa):
         demo_page = DemoPage(mozwebqa)
         demo_page.go_to_page()
