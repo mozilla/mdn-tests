@@ -55,7 +55,7 @@ class BasePage(Page):
                 'url_suffix': '#nav-sub-docs',
             }, {
                 'locator': _make_apps_locator,
-                'url_suffix': '/developers/',
+                'url_suffix': 'https://marketplace.firefox.com/developers/?menu',
             }, {
                 'locator': _use_firefox_locator,
                 'url_suffix': '#nav-sub-firefox',
@@ -136,10 +136,10 @@ class BasePage(Page):
                 'url_suffix': '/Guide?menu',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(4) > a'),
-                'url_suffix': '/demos/?menu',
+                'url_suffix': '/Accessibility?menu',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(5) > a'),
-                'url_suffix': '/docs?menu',
+                'url_suffix': '/demos/?menu',
             }
         ]
 
