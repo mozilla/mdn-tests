@@ -102,44 +102,47 @@ class BasePage(Page):
 
         read_docs_links_list = [
             {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(1) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(1) > a'),
                 'url_suffix': '/HTML?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(2) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(2) > a'),
                 'url_suffix': '/CSS?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(3) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(3) > a'),
                 'url_suffix': '/JavaScript?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(4) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(4) > a'),
                 'url_suffix': '/Graphics?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(5) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(5) > a'),
                 'url_suffix': '/API?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(6) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(6) > a'),
                 'url_suffix': '/Apps?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul > li:nth-of-type(7) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(7) > a'),
                 'url_suffix': '/tools?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(1) > ul >  li:nth-of-type(8) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul >  li:nth-of-type(8) > a'),
                 'url_suffix': '/MathML?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(1) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(2) > ul > li:nth-of-type(1) > a'),
                 'url_suffix': '/Tutorials?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(2) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(2) > ul > li:nth-of-type(2) > a'),
                 'url_suffix': '/Reference?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(3) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(2) > ul > li:nth-of-type(3) > a'),
                 'url_suffix': '/Guide?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(4) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(2) > ul > li:nth-of-type(4) > a'),
                 'url_suffix': '/Accessibility?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul >li:nth-of-type(2) > ul > li:nth-of-type(5) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(2) > ul > li:nth-of-type(5) > a'),
                 'url_suffix': '/demos/?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(2) > ul > li:nth-of-type(6) > a'),
+                'url_suffix': '/docs?menu',
             }
         ]
 
