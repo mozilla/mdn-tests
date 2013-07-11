@@ -106,9 +106,9 @@ class TestHome:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.xfail(reason="BUG 802196: Broken links on staging")
-    # https://bugzilla.mozilla.org/show_bug.cgi?id=802196
     @pytest.mark.nondestructive
+    @pytest.mark.xfail("config.getvalue('base_url').endswith('allizom.org')",
+                        reason="BUG 802196: Broken links on staging")
     def test_read_docs_menu_link_urls_are_valid(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
