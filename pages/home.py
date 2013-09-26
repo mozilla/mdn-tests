@@ -13,6 +13,12 @@ class HomePage(BasePage):
 
     _page_title = 'Mozilla Developer Network'
 
+    _display_name_input_locator = (By.CSS_SELECTOR, '.user-state > li:nth-child(1) > a')
+
     def go_to_page(self):
         self.selenium.get(self.base_url + '/')
         self.is_the_current_page
+
+    @property
+    def display_name(self):
+        return self.selenium.find_element(*self._display_name_input_locator).get_attribute('text')
