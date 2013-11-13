@@ -10,7 +10,6 @@ from unittestzero import Assert
 import pytest
 
 
-@pytest.mark.skipif("config.getvalue('base_url').endswith('allizom.org')")
 class TestHome:
 
     @pytest.mark.nondestructive
@@ -108,7 +107,7 @@ class TestHome:
 
     @pytest.mark.nondestructive
     @pytest.mark.xfail("config.getvalue('base_url').endswith('allizom.org')",
-                        reason="BUG 802196: Broken links on staging")
+                       reason="BUG 802196: Broken links on staging")
     def test_read_docs_menu_link_urls_are_valid(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
