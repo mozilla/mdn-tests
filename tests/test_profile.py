@@ -12,6 +12,7 @@ import pytest
 
 class TestProfile:
 
+    @pytest.mark.credentials
     @pytest.mark.nondestructive
     def test_profile_page(self, mozwebqa):
         home_page = HomePage(mozwebqa)
