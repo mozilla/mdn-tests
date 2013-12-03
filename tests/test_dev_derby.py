@@ -4,10 +4,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import pytest
+
 from pages.derby import DerbyPage
 
 from unittestzero import Assert
-import pytest
 
 
 class TestDevDerby:
@@ -60,8 +61,9 @@ class TestDevDerby:
         Assert.true(derby_page.is_prizes_image_visible)
 
     @pytest.mark.nondestructive
-    @pytest.mark.xfail("config.getvalue('base_url') == 'https://developer.mozilla.org'", reason="The Dev Derby will be on hiatus from August to October")
     def test_judge_photos_visible(self, mozwebqa):
+        if mozwebqa.base_url != 'https://developer-dev.allizom.org':
+            pytest.xfail(reason="The Dev Derby will be on hiatus from August to October")
         derby_page = DerbyPage(mozwebqa)
         derby_page.go_to_page()
 
@@ -73,8 +75,9 @@ class TestDevDerby:
             Assert.true(judge.is_photo_visible)
 
     @pytest.mark.nondestructive
-    @pytest.mark.xfail("config.getvalue('base_url') == 'https://developer.mozilla.org'", reason="The Dev Derby will be on hiatus from August to October")
     def test_are_previous_challenges_visible(self, mozwebqa):
+        if mozwebqa.base_url != 'https://developer-dev.allizom.org':
+            pytest.xfail(reason="The Dev Derby will be on hiatus from August to October")
         derby_page = DerbyPage(mozwebqa)
         derby_page.go_to_page()
 
