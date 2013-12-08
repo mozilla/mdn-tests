@@ -202,3 +202,9 @@ class BasePage(Page):
                 'url_suffix': '//www.mozilla.org/en-US/privacy',
             }
         ]
+
+        _logo_locator = (By.CSS_SELECTOR, 'footer p')
+        
+        @property
+        def is_logo_visible(self):
+            return self.is_element_visible(self._logo_locator)
