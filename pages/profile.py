@@ -14,7 +14,7 @@ class ProfilePage(BasePage):
     _nickname_locator = (By.CLASS_NAME, 'nickname')
     _irc_locator = (By.CLASS_NAME, 'irc')
     _organization_locator = (By.CLASS_NAME, 'org')
-    _title_locator = (By.CLASS_NAME, 'title')
+    _title_locator = (By.CSS_SELECTOR, '.info .title')
     _photo_locator = (By.CLASS_NAME, 'photo')
     _website_locator = (By.CSS_SELECTOR, '.website > .url')
     _twitter_locator = (By.CSS_SELECTOR, '.twitter > .url')
