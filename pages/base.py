@@ -19,7 +19,6 @@ class BasePage(Page):
     def sign_in(self, user='default'):
         credentials = self.testsetup.credentials[user]
         self.header.click_sign_in()
-        self.header.browser_id_info.click_sign_in()
         from browserid import BrowserID
         browser_id = BrowserID(self.selenium, self.timeout)
         browser_id.sign_in(credentials['email'], credentials['password'])
@@ -39,7 +38,7 @@ class BasePage(Page):
 
     class HeaderRegion(Page):
 
-        _sign_in_locator = (By.CSS_SELECTOR, '#masthead .browserid-signin')
+        _sign_in_locator = (By.CSS_SELECTOR, '.browserid .signin')
         _sign_out_locator = (By.LINK_TEXT, 'Sign out')
         _profile_link_locator = (By.CSS_SELECTOR, '.user-state a')
         _search_locator = (By.ID, 'q')
@@ -174,39 +173,25 @@ class BasePage(Page):
         def is_search_present(self):
             return self.is_element_present(self._search_locator)
 
-        @property
-        def browser_id_info(self):
-            return self.BrowserIDInfoRegion(self.testsetup)
-
-        class BrowserIDInfoRegion(Page):
-
-            _sign_in_locator = (By.CSS_SELECTOR, '.browserid-info .browserid-signin')
-
-            def click_sign_in(self):
-                self.selenium.find_element(*self._sign_in_locator).click()
-
     class FooterRegion(Page):
 
         footer_links_list = [
             {
-                'locator': (By.CSS_SELECTOR, '#footbar > div.wrap > p > a'),
-                'url_suffix': '/docs/Project:Feedback',
+                'locator': (By.CSS_SELECTOR, 'footer p > bdi > a:nth-child(2)'),
+                'url_suffix': '/en-US/docs/Project:Copyrights',
             }, {
-                'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(1)'),
-                'url_suffix': '/docs/Project:Copyrights',
+                'locator': (By.CSS_SELECTOR, 'footer p > bdi > a:nth-child(3)'),
+                'url_suffix': '/en-US/docs/Project:About',
             }, {
-                'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(2)'),
-                'url_suffix': '/docs/Project:About',
+                'locator': (By.CSS_SELECTOR, 'footer p > bdi > a:nth-child(4)'),
+                'url_suffix': '//github.com/mozilla/kuma',
             }, {
-                'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(3)'),
-                'url_suffix': 'https://github.com/mozilla/kuma',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#legal > p > a:nth-child(4)'),
-                'url_suffix': '/privacy',
+                'locator': (By.CSS_SELECTOR, 'footer p > bdi > a:nth-child(5)'),
+                'url_suffix': '//www.mozilla.org/en-US/privacy',
             }
         ]
 
-        _logo_locator = (By.CSS_SELECTOR, '#legal > img')
+        _logo_locator = (By.CSS_SELECTOR, 'footer p')
 
         @property
         def is_logo_visible(self):

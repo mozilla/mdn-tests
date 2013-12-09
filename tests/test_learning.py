@@ -34,7 +34,6 @@ class TestLearning:
                 bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
         Assert.true(learning_page.header.is_search_present)
-        Assert.true(learning_page.footer.is_logo_visible)
 
     @pytest.mark.nondestructive
     def test_page_elements_are_visible(self, mozwebqa):
