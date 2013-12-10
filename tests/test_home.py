@@ -10,7 +10,6 @@ from unittestzero import Assert
 import pytest
 
 
-@pytest.mark.skipif("config.getvalue('base_url').endswith('allizom.org')")
 class TestHome:
 
     @pytest.mark.nondestructive
@@ -35,6 +34,8 @@ class TestHome:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
+    @pytest.mark.xfail("'-dev' in config.getvalue('base_url')",
+                       reason="BUG 802196: Broken links on dev")
     @pytest.mark.nondestructive
     def test_main_nav_link_urls_are_valid(self, mozwebqa):
         home_page = HomePage(mozwebqa)
@@ -71,6 +72,8 @@ class TestHome:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
+    @pytest.mark.xfail("'-dev' in config.getvalue('base_url')",
+                       reason="BUG 802196: Broken links on dev")
     @pytest.mark.nondestructive
     def test_zones_link_urls_are_valid(self, mozwebqa):
         home_page = HomePage(mozwebqa)
@@ -85,8 +88,7 @@ class TestHome:
 
     @pytest.mark.native
     @pytest.mark.nondestructive
-    @pytest.mark.xfail("config.getvalue('base_url').endswith('.org')",
-                       reason="BUG 802196: Broken links on staging")
+    @pytest.mark.xfail(reason="Checking for visibility of items on the pop up menu is flaky.")
     def test_web_platform_menu_links_are_visible(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
@@ -99,8 +101,6 @@ class TestHome:
         Assert.true(home_page.header.is_search_present)
 
     @pytest.mark.nondestructive
-    @pytest.mark.xfail("config.getvalue('base_url').endswith('.org')",
-                       reason="BUG 802196: Broken links on staging")
     def test_web_platform_menu_link_destinations_are_correct(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
@@ -113,7 +113,7 @@ class TestHome:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    @pytest.mark.xfail("config.getvalue('base_url').endswith('.org')",
+    @pytest.mark.xfail("config.getvalue('base_url').endswith('allizom.org')",
                        reason="BUG 802196: Broken links on staging")
     def test_web_platform_menu_link_urls_are_valid(self, mozwebqa):
         home_page = HomePage(mozwebqa)
