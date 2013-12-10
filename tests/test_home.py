@@ -85,6 +85,8 @@ class TestHome:
 
     @pytest.mark.native
     @pytest.mark.nondestructive
+    @pytest.mark.xfail("config.getvalue('base_url').endswith('.org')",
+                       reason="BUG 802196: Broken links on staging")
     def test_web_platform_menu_links_are_visible(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
@@ -97,6 +99,8 @@ class TestHome:
         Assert.true(home_page.header.is_search_present)
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail("config.getvalue('base_url').endswith('.org')",
+                       reason="BUG 802196: Broken links on staging")
     def test_web_platform_menu_link_destinations_are_correct(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
@@ -109,7 +113,7 @@ class TestHome:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    @pytest.mark.xfail("config.getvalue('base_url').endswith('allizom.org')",
+    @pytest.mark.xfail("config.getvalue('base_url').endswith('.org')",
                        reason="BUG 802196: Broken links on staging")
     def test_web_platform_menu_link_urls_are_valid(self, mozwebqa):
         home_page = HomePage(mozwebqa)
