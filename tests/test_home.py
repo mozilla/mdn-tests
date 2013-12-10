@@ -34,8 +34,8 @@ class TestHome:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.xfail("config.getvalue('base_url').endswith('allizom.org')",
-                       reason="BUG 802196: Broken links on staging")
+    @pytest.mark.xfail("'-dev' in config.getvalue('base_url')",
+                       reason="BUG 802196: Broken links on dev")
     @pytest.mark.nondestructive
     def test_main_nav_link_urls_are_valid(self, mozwebqa):
         home_page = HomePage(mozwebqa)
@@ -72,8 +72,8 @@ class TestHome:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.xfail("config.getvalue('base_url').endswith('allizom.org')",
-                       reason="BUG 802196: Broken links on staging")
+    @pytest.mark.xfail("'-dev' in config.getvalue('base_url')",
+                       reason="BUG 802196: Broken links on dev")
     @pytest.mark.nondestructive
     def test_zones_link_urls_are_valid(self, mozwebqa):
         home_page = HomePage(mozwebqa)
@@ -150,8 +150,6 @@ class TestHome:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    @pytest.mark.xfail("config.getvalue('base_url').endswith('allizom.org')",
-                       reason="BUG 802196: Broken links on staging")
     def test_footer_link_urls_are_valid(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
