@@ -4,6 +4,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -42,44 +43,50 @@ class BasePage(Page):
         _sign_out_locator = (By.LINK_TEXT, 'Sign out')
         _profile_link_locator = (By.CSS_SELECTOR, '.user-state a')
         _search_locator = (By.ID, 'q')
-        _read_docs_locator = (By.CSS_SELECTOR, '#nav-main-docs a')
-        _make_apps_locator = (By.CSS_SELECTOR, '#nav-main-apps a')
-        _use_firefox_locator = (By.CSS_SELECTOR, '#nav-main-firefox a')
-        _submit_demos_locator = (By.CSS_SELECTOR, '#nav-main-demos a')
-        _get_involved_locator = (By.CSS_SELECTOR, '#nav-main-community a')
+        _zones_menu_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(1) > a')
+        _web_platform_menu_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(2) > a')
+        _developer_program_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(3) > a')
+        _tools_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(4) > a')
+        _demos_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(5) > a')
 
         main_nav_links_list = [
             {
-                'locator': _read_docs_locator,
-                'url_suffix': '#nav-sub-docs',
+                'locator': _zones_menu_locator,
+                'url_suffix': '',
             }, {
-                'locator': _make_apps_locator,
-                'url_suffix': 'https://marketplace.firefox.com/developers/?menu',
+                'locator': _web_platform_menu_locator,
+                'url_suffix': '/docs/Web',
             }, {
-                'locator': _use_firefox_locator,
-                'url_suffix': '#nav-sub-firefox',
+                'locator': _developer_program_locator,
+                'url_suffix': '/docs/Mozilla/Developer_Program',
             }, {
-                'locator': _submit_demos_locator,
-                'url_suffix': '/demos/?menu',
+                'locator': _tools_locator,
+                'url_suffix': '/docs/Tools',
             }, {
-                'locator': _get_involved_locator,
-                'url_suffix': '#nav-sub-community',
+                'locator': _demos_locator,
+                'url_suffix': '/demos/',
             }
         ]
 
-        build_use_firefox_links_list = [
+        zones_links_list = [
             {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-firefox > li:nth-of-type(1) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-zones-submenu li:nth-of-type(1) > a'),
+                'url_suffix': '/Add-ons?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-zones-submenu li:nth-of-type(2) > a'),
+                'url_suffix': '/Apps?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-zones-submenu li:nth-of-type(3) > a'),
+                'url_suffix': '/Firefox?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-zones-submenu li:nth-of-type(4) > a'),
+                'url_suffix': '/Marketplace?menu',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-zones-submenu li:nth-of-type(5) > a'),
                 'url_suffix': '/Firefox_OS?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-firefox > li:nth-of-type(2) > a'),
-                'url_suffix': '/Firefox?menu'
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-firefox > li:nth-of-type(3) > a'),
-                'url_suffix': '/Mobile?menu',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-firefox > li:nth-of-type(4) > a'),
-                'url_suffix': '/Add-ons?menu',
+                'locator': (By.CSS_SELECTOR, '#nav-zones-submenu li:nth-of-type(6) > a'),
+                'url_suffix': '/Persona?menu',
             }
         ]
 
@@ -99,57 +106,55 @@ class BasePage(Page):
             }
         ]
 
-        read_docs_links_list = [
+        web_platform_links_list = [
             {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(1) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(1) > a'),
                 'url_suffix': '/HTML?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(2) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(2) > a'),
                 'url_suffix': '/CSS?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(3) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(3) > a'),
                 'url_suffix': '/JavaScript?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(4) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(4) > a'),
                 'url_suffix': '/Graphics?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(5) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(5) > a'),
                 'url_suffix': '/API?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(6) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(6) > a'),
                 'url_suffix': '/Apps?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul > li:nth-of-type(7) > a'),
-                'url_suffix': '/tools?menu',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(1) > ul >  li:nth-of-type(8) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(7) > a'),
                 'url_suffix': '/MathML?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(2) > ul > li:nth-of-type(1) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(1) > a'),
                 'url_suffix': '/Tutorials?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(2) > ul > li:nth-of-type(2) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(2) > a'),
                 'url_suffix': '/Reference?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(2) > ul > li:nth-of-type(3) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(3) > a'),
                 'url_suffix': '/Guide?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(2) > ul > li:nth-of-type(4) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(4) > a'),
                 'url_suffix': '/Accessibility?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(2) > ul > li:nth-of-type(5) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(5) > a'),
                 'url_suffix': '/demos/?menu',
             }, {
-                'locator': (By.CSS_SELECTOR, '#nav-sub-docs > ul > li:nth-of-type(2) > ul > li:nth-of-type(6) > a'),
+                'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(6) > a'),
                 'url_suffix': '/docs?menu',
             }
         ]
 
-        def open_read_docs_menu(self):
-            self.selenium.find_element(*self._read_docs_locator).click()
+        def open_web_platform_menu(self):
+            web_platform_menu = self.selenium.find_element(*self._web_platform_menu_locator)
+            ActionChains(self.selenium).move_to_element(web_platform_menu).perform()
 
-        def open_use_firefox_menu(self):
-            self.selenium.find_element(*self._use_firefox_locator).click()
+        def open_zones_menu(self):
+            self.selenium.find_element(*self._zones_menu_locator).click()
 
         def open_get_involved_menu(self):
             self.selenium.find_element(*self._get_involved_locator).click()
