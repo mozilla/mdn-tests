@@ -59,8 +59,9 @@ class TestDevDerby:
         Assert.equal(derby_page.prizes_heading, 'PRIZES')
         Assert.true(derby_page.is_prizes_image_visible)
 
+    @pytest.mark.xfail("'-dev' not in config.getvalue('base_url')",
+                       reason="The Dev Derby will be on hiatus from August to October")
     @pytest.mark.nondestructive
-    @pytest.mark.xfail("config.getvalue('base_url') == 'https://developer.mozilla.org'", reason="The Dev Derby will be on hiatus from August to October")
     def test_judge_photos_visible(self, mozwebqa):
         derby_page = DerbyPage(mozwebqa)
         derby_page.go_to_page()
@@ -72,8 +73,9 @@ class TestDevDerby:
         for judge in all_judges:
             Assert.true(judge.is_photo_visible)
 
+    @pytest.mark.xfail("'-dev' not in config.getvalue('base_url')",
+                       reason="The Dev Derby will be on hiatus from August to October")
     @pytest.mark.nondestructive
-    @pytest.mark.xfail("config.getvalue('base_url') == 'https://developer.mozilla.org'", reason="The Dev Derby will be on hiatus from August to October")
     def test_are_previous_challenges_visible(self, mozwebqa):
         derby_page = DerbyPage(mozwebqa)
         derby_page.go_to_page()
