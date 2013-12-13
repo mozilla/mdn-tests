@@ -71,81 +71,81 @@ class BasePage(Page):
         zones_links_list = [
             {
                 'locator': (By.CSS_SELECTOR, '#nav-zones-submenu li:nth-of-type(1) > a'),
-                'url_suffix': '/Add-ons?menu',
+                'url_suffix': '/Add-ons',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-zones-submenu li:nth-of-type(2) > a'),
-                'url_suffix': '/Apps?menu',
+                'url_suffix': '/Apps',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-zones-submenu li:nth-of-type(3) > a'),
-                'url_suffix': '/Firefox?menu',
+                'url_suffix': '/Firefox',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-zones-submenu li:nth-of-type(4) > a'),
-                'url_suffix': '/Marketplace?menu',
+                'url_suffix': '/Marketplace',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-zones-submenu li:nth-of-type(5) > a'),
-                'url_suffix': '/Firefox_OS?menu',
+                'url_suffix': '/Firefox_OS',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-zones-submenu li:nth-of-type(6) > a'),
-                'url_suffix': '/Persona?menu',
+                'url_suffix': '/Persona',
             }
         ]
 
         get_involved_links_list = [
             {
                 'locator': (By.CSS_SELECTOR, '#nav-sub-community > li:nth-of-type(1) > a'),
-                'url_suffix': '/Join_the_community?menu',
+                'url_suffix': '/Join_the_community',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-sub-community > li:nth-of-type(2) > a'),
-                'url_suffix': '/Contributing?menu'
+                'url_suffix': '/Contributing'
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-sub-community > li:nth-of-type(3) > a'),
-                'url_suffix': '/events?menu',
+                'url_suffix': '/events',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-sub-community> li:nth-of-type(4) > a'),
-                'url_suffix': '/Follow_what_s_happening?menu',
+                'url_suffix': '/Follow_what_s_happening',
             }
         ]
 
         web_platform_links_list = [
             {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(1) > a'),
-                'url_suffix': '/HTML?menu',
+                'url_suffix': '/HTML',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(2) > a'),
-                'url_suffix': '/CSS?menu',
+                'url_suffix': '/CSS',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(3) > a'),
-                'url_suffix': '/JavaScript?menu',
+                'url_suffix': '/JavaScript',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(4) > a'),
-                'url_suffix': '/Graphics?menu',
+                'url_suffix': '/Graphics',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(5) > a'),
-                'url_suffix': '/API?menu',
+                'url_suffix': '/API',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(6) > a'),
-                'url_suffix': '/Apps?menu',
+                'url_suffix': '/Apps',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(1) li:nth-of-type(7) > a'),
-                'url_suffix': '/MathML?menu',
+                'url_suffix': '/MathML',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(1) > a'),
-                'url_suffix': '/Tutorials?menu',
+                'url_suffix': '/Tutorials',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(2) > a'),
-                'url_suffix': '/Reference?menu',
+                'url_suffix': '/Reference',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(3) > a'),
-                'url_suffix': '/Guide?menu',
+                'url_suffix': '/Guide',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(4) > a'),
-                'url_suffix': '/Accessibility?menu',
+                'url_suffix': '/Accessibility',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(5) > a'),
-                'url_suffix': '/demos/?menu',
+                'url_suffix': '/demos/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(6) > a'),
-                'url_suffix': '/docs?menu',
+                'url_suffix': '/docs',
             }
         ]
 
