@@ -183,10 +183,10 @@ class BasePage(Page):
         footer_links_list = [
             {
                 'locator': (By.CSS_SELECTOR, 'footer p > bdi > a:nth-child(2)'),
-                'url_suffix': '/en-US/docs/Project:Copyrights',
+                'url_suffix': '/en-US/docs/Project:MDN/About#Copyrights_and_licenses',
             }, {
                 'locator': (By.CSS_SELECTOR, 'footer p > bdi > a:nth-child(3)'),
-                'url_suffix': '/en-US/docs/Project:About',
+                'url_suffix': '/en-US/docs/Project:MDN/About',
             }, {
                 'locator': (By.CSS_SELECTOR, 'footer p > bdi > a:nth-child(4)'),
                 'url_suffix': '//github.com/mozilla/kuma',
