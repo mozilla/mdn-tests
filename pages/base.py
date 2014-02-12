@@ -145,7 +145,7 @@ class BasePage(Page):
                 'url_suffix': '/demos/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-platform-submenu > div:nth-of-type(2) li:nth-of-type(6) > a'),
-                'url_suffix': '/docs',
+                'url_suffix': '/docs/Web',
             }
         ]
 
