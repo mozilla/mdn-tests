@@ -192,7 +192,7 @@ class BasePage(Page):
                 'url_suffix': '//github.com/mozilla/kuma',
             }, {
                 'locator': (By.CSS_SELECTOR, 'footer p > bdi > a:nth-child(5)'),
-                'url_suffix': '//www.mozilla.org/en-US/privacy',
+                'url_suffix': '//www.mozilla.org/privacy/policies/websites/',
             }
         ]
 
