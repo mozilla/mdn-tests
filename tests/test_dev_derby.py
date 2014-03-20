@@ -36,7 +36,7 @@ class TestDevDerby:
         Assert.true(derby_page.header.is_search_present)
         Assert.true(derby_page.footer.is_logo_visible)
 
-    @pytest.mark.xfail(reason="No derby winners on production yet")
+    @pytest.mark.skipif("True", reason="No derby winners on production yet, The Dev Derby is on indefinite hiatus")
     @pytest.mark.nondestructive
     def test_derby_links_visible(self, mozwebqa):
         derby_page = DerbyPage(mozwebqa)
@@ -59,8 +59,8 @@ class TestDevDerby:
         Assert.equal(derby_page.prizes_heading, 'PRIZES')
         Assert.true(derby_page.is_prizes_image_visible)
 
-    @pytest.mark.xfail("'-dev' not in config.getvalue('base_url')",
-                       reason="The Dev Derby will be on hiatus from August to October")
+    @pytest.mark.skipif("'-dev' not in config.getvalue('base_url')",
+                       reason="The Dev Derby is on indefinite hiatus")
     @pytest.mark.nondestructive
     def test_judge_photos_visible(self, mozwebqa):
         derby_page = DerbyPage(mozwebqa)
@@ -73,8 +73,8 @@ class TestDevDerby:
         for judge in all_judges:
             Assert.true(judge.is_photo_visible)
 
-    @pytest.mark.xfail("'-dev' not in config.getvalue('base_url')",
-                       reason="The Dev Derby will be on hiatus from August to October")
+    @pytest.mark.skipif("'-dev' not in config.getvalue('base_url')",
+                       reason="The Dev Derby is on indefinite hiatus")
     @pytest.mark.nondestructive
     def test_are_previous_challenges_visible(self, mozwebqa):
         derby_page = DerbyPage(mozwebqa)
