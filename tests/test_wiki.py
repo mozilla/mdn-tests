@@ -32,10 +32,10 @@ class TestWiki:
         wiki_page.sign_in()
 
         input_text = 'automatic_test_by_Selenium_tests_%s' % random.choice(string.lowercase)
+
+        # Slug is the same as the title
         wiki_page.set_input_text_for('article_title', input_text)
-        wiki_page.set_input_text_for('slug_input', input_text)
         wiki_page.set_input_text_for('comment_field', input_text)
-        #wiki_page.set_input_text_for('tags_list', input_text)
         wiki_page.select_type_of_TOC('2')
         wiki_page.send_input_text_for_body(input_text)
 

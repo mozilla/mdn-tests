@@ -46,10 +46,9 @@ class EditPage(BasePage):
     _page_title = 'Create a New Article | MDN'
 
     _article_title_locator = (By.ID, 'id_title')
-    _slug_input_locator = (By.ID, 'id_slug')
     _type_of_toc_locator = (By.ID, 'id_toc_depth')
     _save_changes_button_locator = (By.ID, 'btn-save')
-    _document_title_locator = (By.CSS_SELECTOR, '.document-head > h1')
+    _document_title_locator = (By.CSS_SELECTOR, '#wiki-document-head > h1')
     _comment_field_locator = (By.ID, 'id_comment')
     _tags_list_locator = (By.CSS_SELECTOR, '.tagit-new')
     _wiki_doc_content_locator = (By.CSS_SELECTOR, '#wikiArticle > p')
@@ -61,7 +60,6 @@ class EditPage(BasePage):
         iframe = self.selenium.find_elements_by_tag_name('iframe')[0]
         self.selenium.switch_to_frame(iframe)
         input_field = self.selenium.find_element_by_xpath('/html/body/p')
-        input_field.click()
         input_field.send_keys(value)
         self.selenium.switch_to_default_content()
 
@@ -77,12 +75,12 @@ class EditPage(BasePage):
 
     def click_save_changes(self):
         self.selenium.find_element(*self._save_changes_button_locator).click()
-        WebDriverWait(self.selenium, self.timeout).until(lambda s: s.find_element(*self.header._document_title_locator))
+        WebDriverWait(self.selenium, self.timeout).until(lambda s: s.find_element(*self._document_title_locator))
 
     @property
     def wiki_doc_title(self):
-        return self.is_element_visible(self._document_title_locator).text
+        return self.selenium.find_element(*self._document_title_locator).text
 
     @property
     def wiki_doc_content(self):
-        return self.is_element_visible(self._wiki_doc_content_locator).text
+        return self.selenium.find_element(*self._wiki_doc_content_locator).text
