@@ -26,6 +26,7 @@ class TestWiki:
         Assert.true(wiki_page.tags_list_visible)
         Assert.true(wiki_page.contributors_list_visible)
 
+    @pytest.mark.credentials
     def test_add_wiki_page(self, mozwebqa):
         wiki_page = EditPage(mozwebqa)
         wiki_page.go_to_new_wiki_page()
