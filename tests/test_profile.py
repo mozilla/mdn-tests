@@ -17,7 +17,7 @@ class TestProfile:
     def test_profile_page(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
-        home_page.sign_in()
+        home_page.sign_in(user="default")
 
         profile_page = home_page.header.click_profile_link()
         Assert.true(profile_page.is_nickname_visible)
