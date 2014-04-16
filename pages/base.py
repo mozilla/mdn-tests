@@ -64,26 +64,26 @@ class BasePage(Page):
         _search_locator = (By.ID, 'q')
         _zones_menu_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(1) > a')
         _web_platform_menu_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(2) > a')
-        _developer_program_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(3) > a')
-        _tools_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(4) > a')
-        _demos_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(5) > a')
+        _tools_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(3) > a')
+        _demos_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(4) > a')
+        _connect_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(5) > a')
 
         main_nav_links_list = [
             {
                 'locator': _zones_menu_locator,
-                'url_suffix': '',
+                'url_suffix': '/docs/Zones',
             }, {
                 'locator': _web_platform_menu_locator,
                 'url_suffix': '/docs/Web',
-            }, {
-                'locator': _developer_program_locator,
-                'url_suffix': '/docs/Mozilla/Developer_Program',
             }, {
                 'locator': _tools_locator,
                 'url_suffix': '/docs/Tools',
             }, {
                 'locator': _demos_locator,
                 'url_suffix': '/demos/',
+            }, {
+                'locator': _connect_locator,
+                'url_suffix': '/docs/Mozilla/Connect',
             }
         ]
 
