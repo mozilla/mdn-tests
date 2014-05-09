@@ -14,7 +14,7 @@ from persona_test_user import PersonaTestUser
 
 class BasePage(Page):
 
-    _sign_in_locator = (By.CSS_SELECTOR, '.browserid .signin')
+    _sign_in_locator = (By.CSS_SELECTOR, '.signin')
     _create_new_profile_button = (By.CSS_SELECTOR, '#create_user .submit > button')
     _username_input_field_locator = (By.CSS_SELECTOR, '#create_user input[id="id_username"]')
 
