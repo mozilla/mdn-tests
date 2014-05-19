@@ -12,12 +12,13 @@ from page import Page
 from mocks.mock_user import MockUser
 from persona_test_user import PersonaTestUser
 
+
 class BasePage(Page):
 
-    _sign_in_locator = (By.CSS_SELECTOR, '.signin')
+    _sign_in_with_locator = (By.CSS_SELECTOR, '.oauth-login-options')
+    _persona_login_locator = (By.CSS_SELECTOR, '.persona-button')
     _create_new_profile_button = (By.CSS_SELECTOR, '#create_user .submit > button')
     _username_input_field_locator = (By.CSS_SELECTOR, '#create_user input[id="id_username"]')
-
 
     def link_destination(self, locator):
         link = self.selenium.find_element(*locator)
@@ -25,15 +26,19 @@ class BasePage(Page):
 
     def sign_in(self, user=None):
         credentials = isinstance(user, MockUser) and \
-        user or self.testsetup.credentials.get(user, PersonaTestUser().create_user())
+            user or self.testsetup.credentials.get(user, PersonaTestUser().create_user())
 
         bid_login = self.click_sign_in_to_register(expect='new')
         bid_login.sign_in(credentials['email'], credentials['password'])
-        if user=="default":
+        if user == "default":
             WebDriverWait(self.selenium, self.timeout).until(lambda s: self.is_signed_in)
 
     def click_sign_in_to_register(self, expect='new'):
-        self.selenium.find_element(*self._sign_in_locator).click()
+        hover_element = self.selenium.find_element(*self._sign_in_with_locator)
+        ActionChains(self.selenium).\
+            move_to_element(hover_element).\
+            perform()
+        self.selenium.find_element(*self._persona_login_locator).click()
 
         from browserid.pages.sign_in import SignIn
         return SignIn(self.selenium, self.timeout, expect=expect)
