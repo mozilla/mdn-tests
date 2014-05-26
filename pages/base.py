@@ -12,12 +12,12 @@ from page import Page
 from mocks.mock_user import MockUser
 from persona_test_user import PersonaTestUser
 
+
 class BasePage(Page):
 
     _sign_in_locator = (By.CSS_SELECTOR, '.signin')
     _create_new_profile_button = (By.CSS_SELECTOR, '#create_user .submit > button')
     _username_input_field_locator = (By.CSS_SELECTOR, '#create_user input[id="id_username"]')
-
 
     def link_destination(self, locator):
         link = self.selenium.find_element(*locator)
@@ -29,7 +29,7 @@ class BasePage(Page):
 
         bid_login = self.click_sign_in_to_register(expect='new')
         bid_login.sign_in(credentials['email'], credentials['password'])
-        if user=="default":
+        if user == "default":
             WebDriverWait(self.selenium, self.timeout).until(lambda s: self.is_signed_in)
 
     def click_sign_in_to_register(self, expect='new'):
@@ -62,7 +62,9 @@ class BasePage(Page):
         _sign_out_locator = (By.LINK_TEXT, 'Sign out')
         _profile_link_locator = (By.CSS_SELECTOR, '.user-state a')
         _search_locator = (By.ID, 'q')
+        _zones_submenu_locator = (By.ID, 'nav-zones-submenu')
         _zones_menu_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(1) > a')
+        _web_platform_submenu_locator = (By.ID, 'nav-platform-submenu')
         _web_platform_menu_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(2) > a')
         _tools_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(3) > a')
         _demos_locator = (By.CSS_SELECTOR, '#main-nav > ul > li:nth-of-type(4) > a')
@@ -168,12 +170,23 @@ class BasePage(Page):
             }
         ]
 
+        @property
+        def is_web_platform_submenu_displayed(self):
+            return self.is_element_visible(self._web_platform_submenu_locator)
+
         def open_web_platform_menu(self):
             web_platform_menu = self.selenium.find_element(*self._web_platform_menu_locator)
             ActionChains(self.selenium).move_to_element(web_platform_menu).perform()
+            WebDriverWait(self.selenium, self.timeout).until(lambda s: self.is_web_platform_submenu_displayed)
+
+        @property
+        def is_zones_submenu_displayed(self):
+            return self.is_element_visible(self._zones_submenu_locator)
 
         def open_zones_menu(self):
-            self.selenium.find_element(*self._zones_menu_locator).click()
+            zones_menu = self.selenium.find_element(*self._zones_menu_locator)
+            ActionChains(self.selenium).move_to_element(zones_menu).perform()
+            WebDriverWait(self.selenium, self.timeout).until(lambda s: self.is_zones_submenu_displayed)
 
         def open_get_involved_menu(self):
             self.selenium.find_element(*self._get_involved_locator).click()

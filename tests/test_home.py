@@ -88,7 +88,6 @@ class TestHome:
 
     @pytest.mark.native
     @pytest.mark.nondestructive
-    @pytest.mark.xfail(reason="Checking for visibility of items on the pop up menu is flaky.")
     def test_web_platform_menu_links_are_visible(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()

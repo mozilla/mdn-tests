@@ -25,6 +25,7 @@ class TestSignIn:
         home_page.header.click_sign_out()
         Assert.false(home_page.is_signed_in)
 
+    @pytest.mark.credentials
     def test_create_new_account(self, mozwebqa):
         user = PersonaTestUser().create_user()
         _username = user['email'].split('@')[0]
