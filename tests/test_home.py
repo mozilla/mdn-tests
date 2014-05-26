@@ -49,7 +49,6 @@ class TestHome:
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
-    @pytest.mark.xfail(reason="The pop up menu disappears during the test.")
     def test_zones_links_are_visible(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
