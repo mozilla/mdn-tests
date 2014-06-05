@@ -25,7 +25,7 @@ class BasePage(Page):
 
     def sign_in(self, user=None):
         credentials = isinstance(user, MockUser) and \
-        user or self.testsetup.credentials.get(user, PersonaTestUser().create_user())
+            user or self.testsetup.credentials.get(user, PersonaTestUser().create_user())
 
         bid_login = self.click_sign_in_to_register(expect='new')
         bid_login.sign_in(credentials['email'], credentials['password'])
@@ -37,8 +37,6 @@ class BasePage(Page):
 
         from browserid.pages.sign_in import SignIn
         return SignIn(self.selenium, self.timeout, expect=expect)
-        WebDriverWait(self.selenium, self.timeout).until(lambda s:
-                                                         self.is_element_visible(self._create_new_profile_button))
 
     def enter_new_user_profile(self, _username):
         self.selenium.find_element(*self._username_input_field_locator).send_keys(_username)
@@ -187,9 +185,6 @@ class BasePage(Page):
             zones_menu = self.selenium.find_element(*self._zones_menu_locator)
             ActionChains(self.selenium).move_to_element(zones_menu).perform()
             WebDriverWait(self.selenium, self.timeout).until(lambda s: self.is_zones_submenu_displayed)
-
-        def open_get_involved_menu(self):
-            self.selenium.find_element(*self._get_involved_locator).click()
 
         @property
         def is_sign_out_visible(self):
