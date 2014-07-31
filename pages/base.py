@@ -15,7 +15,8 @@ from persona_test_user import PersonaTestUser
 
 class BasePage(Page):
 
-    _sign_in_locator = (By.CSS_SELECTOR, '.signin')
+    _sign_in_with_locator = (By.CSS_SELECTOR, '.oauth-login-options')
+    _persona_login_locator = (By.CSS_SELECTOR, '.persona-button')
     _create_new_profile_button = (By.CSS_SELECTOR, '#create_user .submit > button')
     _username_input_field_locator = (By.CSS_SELECTOR, '#create_user input[id="id_username"]')
 
@@ -33,7 +34,11 @@ class BasePage(Page):
             WebDriverWait(self.selenium, self.timeout).until(lambda s: self.is_signed_in)
 
     def click_sign_in_to_register(self, expect='new'):
-        self.selenium.find_element(*self._sign_in_locator).click()
+        hover_element = self.selenium.find_element(*self._sign_in_with_locator)
+        ActionChains(self.selenium).\
+            move_to_element(hover_element).\
+            perform()
+        self.selenium.find_element(*self._persona_login_locator).click()
 
         from browserid.pages.sign_in import SignIn
         return SignIn(self.selenium, self.timeout, expect=expect)
