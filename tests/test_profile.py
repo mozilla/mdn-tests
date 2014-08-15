@@ -14,8 +14,6 @@ class TestProfile:
 
     @pytest.mark.credentials
     @pytest.mark.nondestructive
-    @pytest.mark.xfail("'-dev' not in config.getvalue('base_url')",
-                       reason="Bug 1046568 - [prod][stage] Permission denied is displayed when trying to login with persona")
     def test_profile_page(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()

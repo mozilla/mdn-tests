@@ -15,8 +15,6 @@ class TestSignIn:
 
     @pytest.mark.credentials
     @pytest.mark.nondestructive
-    @pytest.mark.xfail("'-dev' not in config.getvalue('base_url')",
-                       reason="Bug 1046568 - [prod][stage] Permission denied is displayed when trying to login with persona")
     def test_sign_in_and_sign_out(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
@@ -28,8 +26,6 @@ class TestSignIn:
         Assert.false(home_page.is_signed_in)
 
     @pytest.mark.credentials
-    @pytest.mark.xfail("'-dev' not in config.getvalue('base_url')",
-                       reason="Bug 1046568 - [prod][stage] Permission denied is displayed when trying to login with persona")
     def test_create_new_account(self, mozwebqa):
         user = PersonaTestUser().create_user()
         _username = user['email'].split('@')[0]
