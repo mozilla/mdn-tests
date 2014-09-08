@@ -7,6 +7,7 @@
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from page import Page
 from mocks.mock_user import MockUser
@@ -19,6 +20,11 @@ class BasePage(Page):
     _persona_login_locator = (By.CSS_SELECTOR, '.launch-persona-login')
     _create_new_profile_button = (By.CSS_SELECTOR, '.submit > button')
     _username_input_field_locator = (By.ID, 'id_username')
+
+    def _go_to_page(self, path_to_page):
+        self.selenium.maximize_window()
+        self.selenium.get(self.base_url + path_to_page)
+        self.is_the_current_page
 
     def link_destination(self, locator):
         link = self.selenium.find_element(*locator)
@@ -38,6 +44,7 @@ class BasePage(Page):
         ActionChains(self.selenium).\
             move_to_element(hover_element).\
             perform()
+        WebDriverWait(self.selenium, self.timeout).until(EC.element_to_be_clickable(self._persona_login_locator))
         self.selenium.find_element(*self._persona_login_locator).click()
 
         from browserid.pages.sign_in import SignIn

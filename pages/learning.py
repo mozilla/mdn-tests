@@ -21,8 +21,7 @@ class LearningPage(BasePage):
     _p2p_image_locator = (By.CSS_SELECTOR, '#learn-p2pu > p span')
 
     def go_to_page(self):
-        self.selenium.get(self.base_url + '/learn')
-        self.is_the_current_page
+        self._go_to_page('/learn')
 
     @property
     def is_page_title_visible(self):
