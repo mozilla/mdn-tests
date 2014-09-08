@@ -15,8 +15,7 @@ class HomePage(BasePage):
     _display_name_locator = (By.CSS_SELECTOR, '.user-state > ul > li:nth-child(1) > a')
 
     def go_to_page(self):
-        self.selenium.get(self.base_url + '/')
-        self.is_the_current_page
+        self._go_to_page('/')
 
     @property
     def display_name(self):

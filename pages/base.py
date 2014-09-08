@@ -20,6 +20,11 @@ class BasePage(Page):
     _create_new_profile_button = (By.CSS_SELECTOR, '.submit > button')
     _username_input_field_locator = (By.ID, 'id_username')
 
+    def _go_to_page(self, path_to_page):
+        self.selenium.maximize_window()
+        self.selenium.get(self.base_url + path_to_page)
+        self.is_the_current_page
+
     def link_destination(self, locator):
         link = self.selenium.find_element(*locator)
         return link.get_attribute('href')

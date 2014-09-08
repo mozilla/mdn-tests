@@ -20,8 +20,7 @@ class DemoPage(BasePage):
     _rss_link_locator = (By.CSS_SELECTOR, '.feed > a')
 
     def go_to_page(self):
-        self.selenium.get(self.base_url + '/demos')
-        self.is_the_current_page
+        self._go_to_page('/demos')
 
     @property
     def is_demo_studio_link_visible(self):
