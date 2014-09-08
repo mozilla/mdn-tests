@@ -16,9 +16,9 @@ from persona_test_user import PersonaTestUser
 class BasePage(Page):
 
     _sign_in_with_locator = (By.CSS_SELECTOR, '.oauth-login-options')
-    _persona_login_locator = (By.CSS_SELECTOR, '.persona-button')
-    _create_new_profile_button = (By.CSS_SELECTOR, '#create_user .submit > button')
-    _username_input_field_locator = (By.CSS_SELECTOR, '#create_user input[id="id_username"]')
+    _persona_login_locator = (By.CSS_SELECTOR, '.launch-persona-login')
+    _create_new_profile_button = (By.CSS_SELECTOR, '.submit > button')
+    _username_input_field_locator = (By.ID, 'id_username')
 
     def link_destination(self, locator):
         link = self.selenium.find_element(*locator)
