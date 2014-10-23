@@ -41,7 +41,6 @@ class TestDemo:
         demo_page = DemoPage(mozwebqa)
         demo_page.go_to_page()
         Assert.true(demo_page.is_demo_studio_link_visible)
-        Assert.true(demo_page.is_learn_more_link_visible)
         Assert.true(demo_page.is_rss_link_visible)
 
     @pytest.mark.nondestructive
