@@ -214,6 +214,7 @@ class BasePage(Page):
         def is_search_present(self):
             return self.is_element_present(self._search_locator)
 
+
     class FooterRegion(Page):
 
         footer_links_list = [
